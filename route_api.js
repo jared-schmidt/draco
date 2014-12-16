@@ -178,6 +178,7 @@ Router.route('api_rpg', {
 
                 var person_name = String(text.split(' ')[0]);
                 person_name = person_name.replace(',', '');
+                person_name = person_name.replace('@', '');
                 person_name = person_name.trim();
 
                 var person = '';
@@ -203,6 +204,7 @@ Router.route('api_rpg', {
             case 'star':
                 var person_name = String(text.split(' ')[0]);
                 person_name = person_name.replace(',', '');
+                person_name = person_name.replace('@', '');
                 person_name = person_name.trim();
 
                 if(person_name != slack_name){
