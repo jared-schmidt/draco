@@ -142,8 +142,7 @@ Router.route('api_rpg', {
             case 'gif':
                 var offset = Math.floor((Math.random() * 10) + 1); //random number between 1 and 10
                 var url = 'http://api.giphy.com/v1/gifs/translate?'+q_string({'s':text.trim()})+'&api_key=dc6zaTOxFJmzC&limit=1&offset='+offset
-                var req = Meteor.http.get(url);
-                var j_data =req.data;
+                var j_data = get_call(url);
                 try{
                     var url = j_data['data']['images']['original']['url'];
                     outgoing_bot('called by: '+ slack_name + " Searched: " + text.trim() +" " + url, channel_id);
@@ -160,8 +159,7 @@ Router.route('api_rpg', {
             case 'sticker':
                 // var offset = Math.floor((Math.random() * 10) + 1); //random number between 1 and 10
                 var url = 'http://api.giphy.com/v1/stickers/search?'+q_string({'q':text.trim()})+'&api_key=dc6zaTOxFJmzC&limit=1&offset=0';
-                var req = Meteor.http.get(url);
-                var j_data =req.data;
+                var j_data = get_call(url);
                 try{
                     var url = j_data['data'][0]['images']['fixed_height']['url'];
                     outgoing_bot('called by: '+ slack_name + " Searched: " + text.trim() +" " + url, channel_id);
@@ -176,10 +174,7 @@ Router.route('api_rpg', {
             case 'person':
                 var people = get_slack_users();
 
-                var person_name = String(text.split(' ')[0]);
-                person_name = person_name.replace(',', '');
-                person_name = person_name.replace('@', '');
-                person_name = person_name.trim();
+                var person_name = get_person_name(text);
 
                 var person = '';
 
@@ -202,11 +197,7 @@ Router.route('api_rpg', {
 
                 break;
             case 'star':
-                var person_name = String(text.split(' ')[0]);
-                person_name = person_name.replace(',', '');
-                person_name = person_name.replace('@', '');
-                person_name = person_name.trim();
-
+                var person_name = get_person_name(text);
                 if(person_name != slack_name){
                     var person = People.findOne({'name': person_name});
 
@@ -227,8 +218,7 @@ Router.route('api_rpg', {
                 break;
             case 'table':
                 var url = 'http://tableflipper.com/json';
-                var req = Meteor.http.get(url);
-                var j_data =req.data;
+                var j_data = get_call(url);
                 try{
                     var url = j_data['gif'];
                     outgoing_bot('called by: '+ slack_name + " " + url, channel_id);
@@ -268,6 +258,18 @@ Router.route('api_rpg', {
 
   });
 
+
+function get_call(url){
+    var req = Meteor.http.get(url);
+    return req.data;
+}
+
+function get_person_name(text){
+    var person_name = String(text.split(' ')[0]);
+    person_name = person_name.replace(',', '');
+    person_name = person_name.replace('@', '');
+    return person_name.trim();
+}
 
 function get_slack_users(){
     var url = 'https://slack.com/api/users.list?token=xoxp-3027284929-3033279105-3192423814-fdc13f&pretty=1'
