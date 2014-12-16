@@ -1,0 +1,1 @@
+curl -X POST --data '{"trigger_word":"rpg", "text":"rpg connect jaschmidt@problemsolutions.net"}' -H 'Content-Type:application/json' http://localhost:3000/api/v1/rpg
