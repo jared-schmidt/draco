@@ -16,6 +16,9 @@ particle4dev:meteor-cron2
 email
 jparker:crypto-base64
 
+#mrt:external-file-loader
+#aramk:requirejs
+
 #meteorhacks:npm
 #meteorhacks:kadira
 #accounts-google
@@ -23,3 +26,5 @@ jparker:crypto-base64
 #mizzao:bootstrap-3
 #raix:handlebar-helpers
 #alanning:roles
+
+#npm-container
