@@ -1,0 +1,39 @@
+{
+    "commands": {
+        "test":{
+            "active":true,
+            "hidden":false,
+            "what":"Test call for draco"
+        },
+        "table":{
+            "active":true,
+            "hidden":false,
+            "what":""
+        },
+        "gif":{
+            "active":true,
+            "hidden":false,
+            "what":""
+        },
+        "sticker":{
+            "active":true,
+            "hidden":false,
+            "what":""
+        },
+        "star":{
+            "active":true,
+            "hidden":false,
+            "what":""
+        },
+        "mystars":{
+            "active":true,
+            "hidden":false,
+            "what":""
+        },
+        "personbot":{
+            "active":true,
+            "hidden":true,
+            "what":""
+        }
+    }
+}
