@@ -60,43 +60,6 @@ Router.route('api_draco', {
         }else{
             message = 'Not sure what ' + command + ' is.';
         }
-
-
-    //     switch(command){
-    //         case 'help':
-    //         case 'commands':
-    //             message = '\n';
-    //             // message = 'whoami - checks if you are connected to the site. \n';
-    //             // message += 'connect {email} - Connects slack to the site. \n';
-    //             // message += 'move {place} - Moves location. \n';
-    //             // message += 'whereami - Gives current location. \n';
-    //             message += 'gif {text} - Returns gif based on text. \n';
-    //             message += 'sticker {text} - Returns sticker based on text. \n';
-    //             message += 'star {username} - Gives a goldstar to a person. \n';
-    //             message += 'mystars - Gives you number of stars you have. \n';
-    //             message += 'table - Gif of flipping a table. \n';
-    //             message += 'about - about. \n';
-    //             break;
-
-
-
-
-
-    //         case 'refresh':
-    //             var people = get_slack_users();
-    //             for(var i=0;i<people.length;i++){
-    //                 var person = People.findOne({'name': people[i].name});
-    //                 if (!person){
-    //                     People.insert(people[i]);
-    //                     People.update({'name': people[i].name}, {$set:{'goldstar': 0}});
-    //                 }
-    //             }
-    //             message = 'Updated people';
-    //             break;
-
-    //         default:
-    //             message = 'Not sure what '+command+' is.';
-    //     }
     }
 
     this.response.setHeader("Content-Type", "application/json");

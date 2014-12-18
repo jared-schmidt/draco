@@ -7,7 +7,8 @@ outgoing_bot = function (message, channel){
         "channel":channel,
         "text": message,
         "icon_emoji": ':ghost:',
-        "username": "Draco (Ghost)"
+        "username": "Draco (Ghost)",
+        'parse':"full"
     }
     var result = HTTP.call("GET", url, {params: payload});
 }

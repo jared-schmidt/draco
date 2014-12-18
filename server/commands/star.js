@@ -1,7 +1,7 @@
 star = {
     start:function(slack){
         var person_name = get_person_name(slack['text']);
-        if(person_name != slack_name){
+        if(person_name != slack['slack_name']){
             var person = People.findOne({'name': person_name});
 
             if(person){
