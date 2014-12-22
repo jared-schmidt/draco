@@ -44,6 +44,14 @@
             "active":true,
             "hidden":false,
             "what":""
+        },
+        "face":{
+            "active":true,
+            "hidden":false,
+            "what":""
+        },
+        "meme":{
+            "active":true
         }
     }
 }
