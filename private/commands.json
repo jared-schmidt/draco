@@ -52,6 +52,9 @@
         },
         "meme":{
             "active":true
+        },
+        "robot":{
+            "active":true
         }
     }
 }

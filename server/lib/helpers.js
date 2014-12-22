@@ -63,6 +63,10 @@ person_bot = function (message, channel, name, icon){
     var result = HTTP.call("GET", url, {params: payload});
 }
 
+text_to_url = function(text){
+    return text.split(" ").join("%20");
+}
+
 // Another way this file could be written
 Meteor.helpers = {
     testHelper : function(){

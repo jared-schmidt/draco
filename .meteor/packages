@@ -9,3 +9,5 @@ insecure
 
 http
 iron:router
+
+particle4dev:meteor-cron2
