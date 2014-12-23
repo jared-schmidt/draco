@@ -11,7 +11,7 @@ gif = {
             if (person.gifs <= limit){
                 var url = j_data['data']['images']['original']['url'];
                 outgoing_bot('called by: '+ slack['slack_name'] + " Searched: " + slack['text'] +" " + url, slack['channel_id']);
-                message = "Sent. " + (limit - person.gifs).toString() + "Gifs left.";
+                message = "Sent. " + (limit - person.gifs).toString() + " Gifs left.";
             }else{
                 message = "Limit reached";
             }

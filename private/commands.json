@@ -55,6 +55,15 @@
         },
         "robot":{
             "active":true
+        },
+        "rtmstart":{
+            "active":true
+        },
+        "game":{
+            "active":true
+        },
+        "steve":{
+            "active":true
         }
     }
 }
