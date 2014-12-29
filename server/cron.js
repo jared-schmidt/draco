@@ -20,7 +20,7 @@ if (Meteor.isServer) {
 
     var c = CRON.createNewCronJob('00 30 3 * * *', function () {
         console.log("Cron Job");
-        People.update({},{$set:{'gifs':0}});
+        People.update({},{$set:{'gifs':0}}, {'multi': true});
     }, 'America/New_York');
     // on stop
     c.onStop(function () {
