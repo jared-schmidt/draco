@@ -1,3 +1,6 @@
+Game = new Meteor.Collection("game");
+
+
 game = {
     start:function(slack){
         var text = slack['text'];
@@ -13,10 +16,12 @@ game = {
                 text = text.trim();
                 switch(command){
                     case 'question':
-                        message = game.question(slack['slack_id']);
+                        question = game.question(slack['slack_id'], slack['channel_id']);
+                        outgoing_bot(question, slack['channel_id']);
+                        message = "Found Question";
                         break;
                     case 'answer':
-                        message = game.answer(slack['slack_id'], text);
+                        message = game.answer(slack['slack_id'], text, slack['channel_id']);
                         break;
                     default:
                         message = "Yeah, that isn't a command.";
@@ -26,7 +31,7 @@ game = {
         }
         return message;
     },
-    question:function(slack_id){
+    question:function(slack_id, channel_id){
         var url = 'http://jservice.io/api/random';
         var j_data = get_call(url);
         try{
@@ -40,25 +45,30 @@ game = {
                 'question_value':value,
                 'question_category_id':category_id
             }
-            People.update({'id':slack_id}, {$set:game_question});
+            question_id = Game.insert(game_question)
+            People.update({},{$set:{'question_id': question_id}}, {'multi':true});
+            outgoing_bot("First person to answer useing '/draco game answer {text}' gets " + value + " points.", channel_id);
             message = question;
         }catch(err){
-            message = 'failed to find image.';
+            message = 'failed to find question.';
         }
         return message;
     },
-    answer:function(slack_id, text){
+    answer:function(slack_id, text, channel_id){
         person = People.findOne({'id':slack_id});
-        var answer = person.question_answer;
+        question = Game.findOne({'_id':person.question_id});
+        var answer = question.question_answer.toLowerCase();
         if (text){
-            if (answer.indexOf(text) > -1 ){
+            if (answer.indexOf(text.toLowerCase()) > -1 ){
                 var correct_obj = {
-                    'question_total': (parseInt(person.question_value) + parseInt(person.question_total)),
-                    'question_value':0,
-                    'question_answer': 192
+                    'question_total': (parseInt(question.question_value) + parseInt(person.question_total))
                 }
                 People.update({'id':slack_id}, {$set:correct_obj});
-                message = 'Good job!';
+                message = person.name + ' got it for ' + question.question_value + " points";
+                outgoing_bot(message, channel_id);
+                message = "Good Job!";
+                question = game.question(slack_id, channel_id);
+                outgoing_bot(question, slack['channel_id']);
             }else{
                 message = "Guess again";
             }
