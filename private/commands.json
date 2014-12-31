@@ -64,6 +64,12 @@
         },
         "steve":{
             "active":true
+        },
+        "cookie":{
+            "active":true
+        },
+        "yoda":{
+            "active":true
         }
     }
 }

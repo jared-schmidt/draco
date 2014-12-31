@@ -15,7 +15,7 @@ game = {
                 text = text.replace(command, '');
                 text = text.trim();
                 switch(command){
-                    case 'question':
+                    case 'question2':
                         question = game.question(slack['slack_id'], slack['channel_id']);
                         outgoing_bot(question, slack['channel_id']);
                         message = "Found Question";

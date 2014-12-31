@@ -11,3 +11,7 @@ http
 iron:router
 
 particle4dev:meteor-cron2
+meteorhacks:npm
+
+
+npm-container

@@ -9,6 +9,11 @@ help = {
         message += 'meme {toptext|bottomText} - Meme with text. \n';
         message += 'face {text} - Returns a face? \n';
         message += 'robot {text} - Returns a robot generatered from your text. \n';
+        message += 'cookie - Returns a fortune cookie message. \n';
+        message += 'game question - Returns a question for anyone to answer. \n';
+        message += 'game answer {text} - Submits an answer for the question. \n';
+        message += 'steve {text*} - Returns a random meme picture of Steve. \n';
+        message += 'yoda {text} - Returns talk like yoda. \n';
         message += 'about - about. \n';
         return message;
     }
