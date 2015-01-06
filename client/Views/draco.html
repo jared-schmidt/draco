@@ -1,0 +1,22 @@
+<head>
+    <title>Draco</title>
+</head>
+
+<template name='layout'>
+    <div id="wrapper">
+        <!-- {{> header}} -->
+        <div id="page-content-wrapper">
+            {{> yield}}
+            <footer>
+                Made Especially for _
+            </footer>
+        </div>
+    </div>
+</template>
+
+<template name="home">
+    <h1>Draco Bot says welcome!</h1>
+    <div>He will count the number of time you click the 'Click Me' Button!</div>
+    <button>Click Me</button>
+    <p>You've pressed the button {{counter}} times.</p>
+</template>

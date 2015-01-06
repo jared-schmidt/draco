@@ -62,6 +62,10 @@ steve = {
                         image = 'http://dracobot.meteor.com/images/polka.jpg';
                         outgoing_bot(image, slack['channel_id']);
                         break;
+                    case 'newsteve':
+                        image = 'http://dracobot.meteor.com/images/newsteve.jpg';
+                        outgoing_bot(image, slack['channel_id']);
+                        break;
                     default:
                         message = "I have no clue.";
                         break;
