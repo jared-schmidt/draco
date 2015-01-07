@@ -1,4 +1,4 @@
-outgoing_bot = function (message, channel){
+outgoing_bot = function (user_id, message, channel){
     var url = 'https://slack.com/api/chat.postMessage';
     var slack_api_token = Meteor.settings['slack_api_token'];
 
@@ -11,6 +11,27 @@ outgoing_bot = function (message, channel){
         'parse':"full"
     }
     var result = HTTP.call("GET", url, {params: payload});
+    if(result.data['ok']){
+        People.update({'id': user_id}, {$set:{"message_time": result.data['ts']}});
+        People.update({'id': user_id}, {$set:{"message_channel": result.data['channel']}});
+    }
+}
+
+delete_message = function(user_id){
+    var person = People.findOne({'id': user_id});
+
+    var url = 'https://slack.com/api/chat.delete';
+    var slack_api_token = Meteor.settings['slack_api_token'];
+
+    var payload = {
+        'token': slack_api_token,
+        'ts': person['message_time'],
+        'channel': person['message_channel']
+    }
+    var result = HTTP.call("GET", url, {params: payload});
+
+    // console.log(result.data);
+    return result.data['ok']
 }
 
 get_call = function (url){

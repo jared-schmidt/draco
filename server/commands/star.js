@@ -7,7 +7,7 @@ star = {
             if(person){
                 People.update({'_id': person._id}, {$inc:{'goldstar':1}});
                 message = 'Gave Star';
-                outgoing_bot("@"+person_name + " has recived a goldstar.", slack['channel_id']);
+                outgoing_bot(slack['slack_id'], "@"+person_name + " has recived a goldstar.", slack['channel_id']);
             }else{
                 message = "Failed to find person.";
             }

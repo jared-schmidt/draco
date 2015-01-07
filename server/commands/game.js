@@ -17,7 +17,7 @@ game = {
                 switch(command){
                     case 'question2':
                         question = game.question(slack['slack_id'], slack['channel_id']);
-                        outgoing_bot(question, slack['channel_id']);
+                        outgoing_bot(slack['slack_id'], question, slack['channel_id']);
                         message = "Found Question";
                         break;
                     case 'answer':
@@ -47,7 +47,7 @@ game = {
             }
             question_id = Game.insert(game_question)
             People.update({},{$set:{'question_id': question_id}}, {'multi':true});
-            outgoing_bot("First person to answer useing '/draco game answer {text}' gets " + value + " points.", channel_id);
+            outgoing_bot(slack['slack_id'], "First person to answer useing '/draco game answer {text}' gets " + value + " points.", channel_id);
             message = question;
         }catch(err){
             message = 'failed to find question.';
@@ -65,10 +65,10 @@ game = {
                 }
                 People.update({'id':slack_id}, {$set:correct_obj});
                 message = person.name + ' got it for ' + question.question_value + " points";
-                outgoing_bot(message, channel_id);
+                outgoing_bot(slack['slack_id'], message, channel_id);
                 message = "Good Job!";
                 question = game.question(slack_id, channel_id);
-                outgoing_bot(question, slack['channel_id']);
+                outgoing_bot(slack['slack_id'], question, slack['channel_id']);
             }else{
                 message = "Guess again";
             }

@@ -6,7 +6,7 @@ sticker = {
         var j_data = get_call(url);
         try{
             var url = j_data['data'][0]['images']['fixed_height']['url'];
-            outgoing_bot('called by: '+ slack['slack_name'] + " Searched: " + slack['text'] +" " + url, slack['channel_id']);
+            outgoing_bot(slack['slack_id'], 'called by: '+ slack['slack_name'] + " Searched: " + slack['text'] +" " + url, slack['channel_id']);
             message = "Sent";
         } catch(err){
             if(err){
