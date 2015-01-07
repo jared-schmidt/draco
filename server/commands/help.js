@@ -17,7 +17,7 @@ help = {
                 if(obj.hasOwnProperty('extra')){
                     extra = '{'+ obj['extra'] + '}';
                 }
-                message += key + ' ' + extra +' - ' + obj['what'] + '\n';
+                message += k + ' ' + extra +' - ' + obj['what'] + '\n';
             }
         }
 
