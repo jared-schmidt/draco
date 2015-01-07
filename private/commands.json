@@ -2,38 +2,42 @@
     "commands": {
         "test":{
             "active":true,
-            "hidden":false,
+            "hidden":true,
             "what":"Test call for draco"
         },
         "table":{
             "active":true,
             "hidden":false,
-            "what":""
+            "what":"Gif of flipping a table"
         },
         "gif":{
             "active":true,
             "hidden":false,
-            "what":""
+            "what":"Returns gif based on text",
+            "extra": "text"
         },
         "sticker":{
             "active":true,
             "hidden":false,
-            "what":""
+            "what":"Returns sticker based on text",
+            "extra": "text"
         },
         "star":{
             "active":true,
             "hidden":false,
-            "what":""
+            "what":"Gives a goldstar to a person",
+            "extra": "username"
         },
         "mystars":{
             "active":true,
             "hidden":false,
-            "what":""
+            "what":"Gives you number of stars you have"
         },
         "personbot":{
             "active":true,
             "hidden":true,
-            "what":""
+            "what":"",
+            "extra": "username"
         },
         "refreshdb":{
             "active":true,
@@ -43,33 +47,53 @@
         "help":{
             "active":true,
             "hidden":false,
-            "what":""
+            "what":"Gives this list of commands"
         },
         "face":{
             "active":true,
             "hidden":false,
-            "what":""
+            "what":"Returns a face?",
+            "extra": "text"
         },
         "meme":{
-            "active":true
+            "active":true,
+            "hidden":false,
+            "what":"Meme with text",
+            "extra": "text"
         },
         "robot":{
-            "active":true
+            "active":true,
+            "hidden":false,
+            "what":"Returns a robot generatered from your text",
+            "extra": "text"
         },
         "rtmstart":{
-            "active":true
+            "active":true,
+            "hidden":true,
+            "what":""
         },
         "game":{
-            "active":true
+            "active":true,
+            "hidden":false,
+            "what":"Question-Like Game thing",
+            "extra": "question|answer {text}"
         },
         "steve":{
-            "active":true
+            "active":true,
+            "hidden":false,
+            "what":"Returns a random meme picture of Steve",
+            "extra": "text*"
         },
         "cookie":{
-            "active":true
+            "active":true,
+            "hidden":false,
+            "what":"Returns a fortune cookie message"
         },
         "yoda":{
-            "active":true
+            "active":true,
+            "hidden":false,
+            "what":"Returns talk like yoda",
+            "extra": "text"
         }
     }
 }
