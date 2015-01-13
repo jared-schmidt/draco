@@ -104,6 +104,12 @@
             "active":true,
             "hidden":false,
             "what":"Deletes the last draco message YOU sent"
+        },
+        "define":{
+            "active":true,
+            "hidden":false,
+            "what":"Returns a definition of a word",
+            "extra":"word"
         }
     }
 }
