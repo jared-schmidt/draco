@@ -110,6 +110,39 @@
             "hidden":false,
             "what":"Returns a definition of a word",
             "extra":"word"
+        },
+        "chuck":{
+          "active":true,
+          "hidden":false,
+          "what":"Returns a random Chuck Norris joke"
+        },
+        "quote":{
+          "active":true,
+          "hidden":false,
+          "what":"Returns a random quote"
+        },
+        "catfact":{
+          "active":true,
+          "hidden":false,
+          "what":"Returns a random catfact"
+        },
+        "pirate":{
+          "active":true,
+          "hidden":false,
+          "what":"Returns talk like a pirate",
+          "extra": "text"
+        },
+        "cowsay":{
+          "active":true,
+          "hidden":false,
+          "what":"Returns talk talking cow",
+          "extra": "text"
+        },
+        "numberfact":{
+          "active":true,
+          "hidden":false,
+          "what":"Returns random fact on a number",
+          "extra": "text"
         }
     }
 }

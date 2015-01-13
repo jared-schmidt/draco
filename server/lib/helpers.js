@@ -70,7 +70,7 @@ validateEmail = function (email) {
 }
 
 
-person_bot = function (message, channel, name, icon){
+person_bot = function (message, channel, name, icon_url){
     var url = 'https://slack.com/api/chat.postMessage';
     var slack_api_token = Meteor.settings['slack_api_token'];
 
@@ -79,9 +79,23 @@ person_bot = function (message, channel, name, icon){
         "channel":channel,
         "text": message,
         "username": name,
-        "icon_url": icon
+        "icon_url": icon_url
     }
     var result = HTTP.call("GET", url, {params: payload});
+}
+
+other_bot = function (message, channel, name, icon){
+  var url = 'https://slack.com/api/chat.postMessage';
+  var slack_api_token = Meteor.settings['slack_api_token'];
+
+  var payload = {
+    "token":slack_api_token,
+    "channel":channel,
+    "text": message,
+    "username": name,
+    "icon_emoji": icon
+  }
+  var result = HTTP.call("GET", url, {params: payload});
 }
 
 text_to_url = function(text){
