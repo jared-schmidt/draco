@@ -18,7 +18,7 @@ if (Meteor.isServer) {
     day of week          0-7 (0 or 7 is Sun, or use names)
  */
 
-    var c = CRON.createNewCronJob('00 30 3 * * *', function () {
+    var c = CRON.createNewCronJob('00 49 9 * * *', function () {
         console.log("Cron Job");
         People.update({},{$set:{'gifs':0}}, {'multi': true});
     }, 'America/New_York');
