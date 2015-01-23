@@ -10,7 +10,8 @@ insecure
 http
 iron:router
 
-particle4dev:meteor-cron2
+#particle4dev:meteor-cron2
+percolate:synced-cron
 meteorhacks:npm
 
 

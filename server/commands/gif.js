@@ -2,9 +2,10 @@ gif = {
     start:function(slack){
         var offset = Math.floor((Math.random() * 10) + 1); //random number between 1 and 10
         var giphy_token = Meteor.settings['giphy_public_token'];
-        var url = 'http://api.giphy.com/v1/gifs/search?'+q_string({'q':slack['text']})+'&api_key='+giphy_token+'&limit=1&offset='+offset
+        var rating = 'pg-13';
+        var url = 'http://api.giphy.com/v1/gifs/search?'+q_string({'q':slack['text']})+'&api_key='+giphy_token+'&limit=1&rating='+rating+'&offset='+offset;
         var j_data = get_call(url);
-        var limit = 150;
+        var limit = 10;
         try{
             // LIMIT COMMENTED OUT
 

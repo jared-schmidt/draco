@@ -1,31 +1,64 @@
 if (Meteor.isServer) {
-    // 0 or 7 Sunday
-    // 1 Monday
-    // 2 Tuesday
-    // 3 Wednesday
-    // 4 Thursday
-    // 5 Friday
-    // 6 Saturday
 
-/*
-    field           allowed values
-    ------          --------------
-    second              0-59
-    minute               0-59
-    hour                 0-23
-    day of month          0-31
-    month                0-12 (or names, see below)
-    day of week          0-7 (0 or 7 is Sun, or use names)
- */
+  function bot_talk(message, channel){
+    var url = 'https://slack.com/api/chat.postMessage';
+    var slack_api_token = Meteor.settings['slack_api_token'];
 
-    var c = CRON.createNewCronJob('00 49 9 * * *', function () {
-        console.log("Cron Job");
-        People.update({},{$set:{'gifs':0}}, {'multi': true});
-    }, 'America/New_York');
-    // on stop
-    c.onStop(function () {
-        console.log('stop');
+    var payload = {
+        "token":slack_api_token,
+        "channel":channel,
+        "text": message,
+        "icon_emoji": ':ghost:',
+        "username": "Draco (Ghost)",
+        'parse':"full"
+    }
+    var result = HTTP.call("GET", url, {params: payload});
+  }
+
+
+    SyncedCron.add({
+      name: 'Say goodbye',
+      schedule: function(parser) {
+        return parser.text('every weekday at 9:55pm');
+      },
+      job: function() {
+        image = 'http://dracobot.meteor.com/images/goodbye.jpg';
+        bot_talk(image, 'G037P84PQ');
+      }
     });
-    c.run();
+
+    SyncedCron.add({
+      name: 'Brown-Bag Time',
+      schedule: function(parser) {
+        return parser.text('at 3:00pm on Thurs');
+      },
+      job: function() {
+        bot_talk('Vote http://brown-bag.meteor.com/', 'G037P84PQ');
+      }
+    });
+
+
+    SyncedCron.add({
+      name: 'Submit Time-last day',
+      schedule: function(parser) {
+        return parser.text('at 9:00pm on the last day of the month');
+      },
+      job: function() {
+        bot_talk('Remember to submit your time. https://problemsolutions.tsheets.com/', 'G037P84PQ');
+      }
+    });
+
+    SyncedCron.add({
+      name: 'Submit Time-15th',
+      schedule: function(parser) {
+        return parser.text('at 9:00pm on the 15th day of the month');
+      },
+      job: function() {
+        bot_talk('Remember to submit your time. https://problemsolutions.tsheets.com/', 'G037P84PQ');
+      }
+    });
+
+    SyncedCron.start();
+
 
 }
