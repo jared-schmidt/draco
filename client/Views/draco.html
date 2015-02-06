@@ -8,7 +8,7 @@
         <div id="page-content-wrapper">
             {{> yield}}
             <footer>
-                Made Especially for _
+                <!-- Made Especially for _ -->
             </footer>
         </div>
     </div>
@@ -19,4 +19,38 @@
     <div>He will count the number of time you click the 'Click Me' Button!</div>
     <button>Click Me</button>
     <p>You've pressed the button {{counter}} times.</p>
+    <br />
+
+    <div>
+    <label>Current Question:</label>
+    {{current_question}}
+    </div>
+    <br />
+    <br />
+    <table style='border: solid 1px black;text-align: center;'>
+        <thead style='border: solid 1px black;text-align: center;'>
+            <th>Name</th>
+            <th>Last Command</th>
+            <th>Gold Stars</th>
+            <th>Question Score</th>
+            <th>Call Count</th>
+        </thead>
+        <tbody style='border: solid 1px black;'>
+        {{#each people}}
+        <tr style='border: solid 1px black;'>
+            <td style='border: solid 1px black;text-align: center;'>
+            {{#if profile.real_name_normalized}}
+                {{profile.real_name_normalized}}
+            {{else}}
+                {{name}}
+            {{/if}}
+            </td>
+            <td style='border: solid 1px black;text-align: center;'>{{lastCommand}}</td>
+            <td style='border: solid 1px black;text-align: center;'>{{goldstar}}</td>
+            <td style='border: solid 1px black;text-align: center;'>{{question_total}}</td>
+            <td style='border: solid 1px black;text-align: center;'>{{dracoCountCall}}</td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
 </template>

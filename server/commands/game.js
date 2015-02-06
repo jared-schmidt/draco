@@ -1,6 +1,3 @@
-Game = new Meteor.Collection("game");
-
-
 game = {
     start:function(slack){
         var text = slack['text'];
@@ -15,7 +12,7 @@ game = {
                 text = text.replace(command, '');
                 text = text.trim();
                 switch(command){
-                    case 'question2':
+                    case 'question':
                         question = game.question(slack['slack_id'], slack['channel_id']);
                         outgoing_bot(slack['slack_id'], question, slack['channel_id']);
                         message = "Found Question";
@@ -43,13 +40,20 @@ game = {
                 'question_question': question,
                 'question_answer': answer,
                 'question_value':value,
-                'question_category_id':category_id
-            }
-            question_id = Game.insert(game_question)
+                'question_category_id':category_id,
+                'question_added': new Date()
+            };
+            console.log("insert question");
+            question_id = Game.insert(game_question);
+            console.log("insert question into people");
             People.update({},{$set:{'question_id': question_id}}, {'multi':true});
-            outgoing_bot(slack['slack_id'], "First person to answer useing '/draco game answer {text}' gets " + value + " points.", channel_id);
+            console.log("OUT BOT");
+            outgoing_bot(slack_id, "First person to answer useing '/draco game answer {text}' gets " + value + " points.", channel_id);
             message = question;
+            console.log("DONE");
         }catch(err){
+            if(err)
+                console.log(err);
             message = 'failed to find question.';
         }
         return message;

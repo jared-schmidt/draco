@@ -143,6 +143,11 @@
           "hidden":false,
           "what":"Returns random fact on a number",
           "extra": "text"
+        },
+        "holiday":{
+            "active":true,
+            "hidden":false,
+            "what":"Returns the holiday(s) for the day"
         }
     }
 }

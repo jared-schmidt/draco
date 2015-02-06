@@ -16,3 +16,6 @@ meteorhacks:npm
 
 
 npm-container
+
+mrt:moment
+mrt:moment-timezone

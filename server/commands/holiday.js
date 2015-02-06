@@ -1,8 +1,5 @@
-test = {
+holiday = {
     start:function(slack){
-
-        console.log(slack);
-
 
         var day = moment().date();
 
@@ -32,13 +29,14 @@ test = {
           if (val[0] == day[0] ){
             // console.log("val 1 -> " + val[1])
             if (val[1] == " " || val[1] == day[1]){
-                console.log(val);
+                // console.log(val);
+                val = val.replace(day, '');
                 hol_lst.push(val);
                 msg += val + '\n'
             }
             }
         });
 
-        return month;
+        return msg;
     }
 }
