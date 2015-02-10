@@ -48,10 +48,19 @@ if (Meteor.isServer) {
       }
     });
 
+
     SyncedCron.add({
       name: 'Submit Time-15th',
       schedule: function(parser) {
-        return parser.text('at 9:00pm on the 15th day of the month');
+        var hour = 21;
+        var th_scheduler = parser.recur()
+                  .on(15).dayOfMonth().onWeekday().on(hour).hour()
+                .and()
+                  .on(13).dayOfMonth().on(6).dayOfWeek().on(hour).hour()
+                .and()
+                  .on(14).dayOfMonth().on(2).dayOfWeek().on(hour).hour()
+
+        return th_scheduler;
       },
       job: function() {
         bot_talk('Remember to submit your time. https://problemsolutions.tsheets.com/', 'G037P84PQ');
