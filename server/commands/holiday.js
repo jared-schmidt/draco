@@ -19,24 +19,19 @@ holiday = {
         var msg = '';
         $("td p").each(function(){
           var val = $(this).text();
-          // console.log(val);
           val = val.trim();
           day = day.toString();
-          // console.log("0 ->" + val[0] == day[0])
-          // console.log("val 0 -> " + val[0])
-          // console.log("day 0 -> " + day[0])
+
 
           if (val[0] == day[0] ){
-            // console.log("val 1 -> " + val[1])
-            if (val[1] == " " || val[1] == day[1]){
-                // console.log(val);
+            if ((val[1] == " " && day.length < 2)|| val[1] == day[1]){
                 val = val.replace(day, '');
                 hol_lst.push(val);
-                msg += val + '\n'
+                msg += '- ' + val + '\n'
             }
             }
         });
 
-        return msg;
+        return "Found " + hol_lst.length + ' holiday(s) for today: \n' + msg;
     }
 }
