@@ -26,6 +26,12 @@ brownbag = {
                     case 'votes':
                         message = brownbag.votes(key);
                         break;
+                    case 'order':
+                        message = brownbag.order(key, text);
+                        break;
+                    case 'orders':
+                        message = brownbag.orders(key);
+                        break;
                     default:
                         message = "http://brown-bag.meteor.com/";
                         break;
@@ -85,6 +91,39 @@ brownbag = {
     },
     votes: function(slack_id){
         var url = 'http://brown-bag.meteor.com/api/v2/votes';
+        var payload = {
+            'api_key': slack_id
+        }
+        var j_data = post_call(url, payload);
+        var message = '';
+        try{
+            message = j_data['message'];
+        }catch(err){
+            if(err)
+                console.log(err);
+            message = 'failed to find user.';
+        }
+        return message;
+    },
+    order: function(slack_id, text){
+        var url = 'http://brown-bag.meteor.com/api/v2/order';
+        var payload = {
+            'api_key': slack_id,
+            'text': text
+        }
+        var j_data = post_call(url, payload);
+        var message = '';
+        try{
+            message = j_data['message'];
+        }catch(err){
+            if(err)
+                console.log(err);
+            message = 'failed to find user.';
+        }
+        return message;
+    },
+    orders: function(slack_id){
+        var url = 'http://brown-bag.meteor.com/api/v2/food';
         var payload = {
             'api_key': slack_id
         }
