@@ -39,6 +39,11 @@ get_call = function (url){
     return req.data;
 }
 
+post_call = function(url, payload){
+    var req = HTTP.post(url, {params: payload});
+    return req.data;
+}
+
 get_person_name = function (text){
     var person_name = String(text.split(' ')[0]);
     person_name = person_name.replace(',', '');

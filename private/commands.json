@@ -148,6 +148,12 @@
             "active":true,
             "hidden":false,
             "what":"Returns the holiday(s) for the day"
+        },
+        "brownbag": {
+            "active":true,
+            "hidden":true,
+            "what": "Connects with the brown-bag website",
+            "extra": "connect {email} | hello | winning"
         }
     }
 }

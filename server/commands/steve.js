@@ -9,7 +9,8 @@ steve = {
             'http://dracobot.meteor.com/images/hug.jpg',
             'http://dracobot.meteor.com/images/dance.jpg',
             'http://dracobot.meteor.com/images/steve.jpg',
-            'http://dracobot.meteor.com/images/polka.jpg'
+            'http://dracobot.meteor.com/images/polka.jpg',
+            'http://dracobot.meteor.com/images/toast.jpg'
         ]
 
 
@@ -64,6 +65,10 @@ steve = {
                         break;
                     case 'newsteve':
                         image = 'http://dracobot.meteor.com/images/newsteve.jpg';
+                        outgoing_bot(slack['slack_id'], image, slack['channel_id']);
+                        break;
+                    case 'toast':
+                        image = 'http://dracobot.meteor.com/images/toast.jpg'
                         outgoing_bot(slack['slack_id'], image, slack['channel_id']);
                         break;
                     default:

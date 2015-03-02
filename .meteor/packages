@@ -20,3 +20,5 @@ npm-container
 mrt:moment
 mrt:moment-timezone
 houston:admin
+
+jparker:crypto-aes
