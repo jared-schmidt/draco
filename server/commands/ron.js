@@ -1,4 +1,4 @@
-test = {
+ron = {
     start:function(slack){
         var url = 'http://ron-swanson-quotes.herokuapp.com/quotes';
         var j_data = get_call(url);

@@ -1,6 +1,6 @@
 cookie = {
     start:function(slack){
-        var url = 'http://private-anon-77f5522d3-fortunecookie.apiary-proxy.com/v1/cookie';
+        var url = 'http://private-anon-2a0672222-fortunecookie.apiary-proxy.com/v1/cookie';
         var j_data = get_call(url);
         try{
             var fortune = j_data[0]['fortune'];

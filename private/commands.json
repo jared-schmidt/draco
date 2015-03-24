@@ -154,6 +154,11 @@
             "hidden":true,
             "what": "Connects with the brown-bag website",
             "extra": "connect {email} | hello | winning | votes | order {text} | orders"
+        },
+        "ron": {
+            "active":true,
+            "hidden": false,
+            "what":"Gets a quote from Ron"
         }
     }
 }
