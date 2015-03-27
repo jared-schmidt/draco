@@ -46,7 +46,7 @@ if (Meteor.isServer) {
   SyncedCron.add({
     name: 'Say goodbye',
     schedule: function(parser) {
-      return parser.text('every weekday at 4:50pm');
+      return parser.text('every weekday at 9:50pm');
     },
     job: function() {
       image = 'http://dracobot.meteor.com/images/goodbye.jpg';
