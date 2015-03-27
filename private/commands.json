@@ -159,6 +159,23 @@
             "active":true,
             "hidden": false,
             "what":"Gets a quote from Ron"
+        },
+        "rgif": {
+            "active":true,
+            "hidden":false,
+            "what":"Gets a random GIF"
+        },
+        "tgif": {
+            "active":true,
+            "hidden":false,
+            "what":"Tanslates words and phrases to GIFs",
+            "extra": "text"
+        },
+        "punch": {
+            "active":true,
+            "hidden":false,
+            "what": "Virtually punch someone",
+            "extra": "username"
         }
     }
 }
