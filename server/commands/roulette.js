@@ -1,4 +1,4 @@
-test = {
+roulette = {
     start:function(slack){
 
         var people = get_slack_users();

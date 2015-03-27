@@ -176,6 +176,11 @@
             "hidden":false,
             "what": "Virtually punch someone",
             "extra": "username"
+        },
+        "roulette":{
+            "active":true,
+            "hidden":false,
+            "what": "Picks a random person from the office"
         }
     }
 }
