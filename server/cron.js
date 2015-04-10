@@ -7,11 +7,11 @@ if (Meteor.isServer) {
     var payload = {
         "token":slack_api_token,
         "channel":channel,
-        "text": message,
+        "text": '@group: ' + message,
         "icon_emoji": ':ghost:',
         "username": "Draco (Ghost)",
         'parse':"full"
-    }
+    };
     var result = HTTP.call("GET", url, {params: payload});
   }
 
@@ -46,7 +46,7 @@ if (Meteor.isServer) {
   SyncedCron.add({
     name: 'Say goodbye',
     schedule: function(parser) {
-      return parser.text('every weekday at 9:50pm');
+      return parser.text('every weekday at 8:50pm');
     },
     job: function() {
       image = 'http://dracobot.meteor.com/images/goodbye.jpg';
@@ -57,7 +57,7 @@ if (Meteor.isServer) {
   SyncedCron.add({
     name: 'Brown-Bag Time',
     schedule: function(parser) {
-      return parser.text('at 3:00pm on Thurs');
+      return parser.text('at 2:00pm on Thurs');
     },
     job: function() {
       bot_talk('Vote http://brown-bag.meteor.com/', 'G045PRA4A');
@@ -68,7 +68,7 @@ if (Meteor.isServer) {
   SyncedCron.add({
     name: 'Submit Time-last day',
     schedule: function(parser) {
-      return parser.text('at 9:00pm on the last day of the month');
+      return parser.text('at 8:00pm on the last day of the month');
     },
     job: function() {
       bot_talk('Remember to submit your time. https://problemsolutions.tsheets.com/', 'G045PRA4A');
@@ -79,7 +79,7 @@ if (Meteor.isServer) {
   SyncedCron.add({
     name: 'Submit Time-15th',
     schedule: function(parser) {
-      var hour = 21;
+      var hour = 20;
       var th_scheduler = parser.recur()
                 .on(15).dayOfMonth().onWeekday().on(hour).hour()
               .and()

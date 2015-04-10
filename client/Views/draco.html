@@ -35,6 +35,9 @@
             <th>Punched</th>
             <th>Question Score</th>
             <th>Call Count</th>
+            <th>Fish Time</th>
+            <th>Fishing</th>
+            <th>Fishes</th>
         </thead>
         <tbody style='border: solid 1px black;'>
         {{#each people}}
@@ -51,6 +54,13 @@
             <td style='border: solid 1px black;text-align: center;'>{{punched}}</td>
             <td style='border: solid 1px black;text-align: center;'>{{question_total}}</td>
             <td style='border: solid 1px black;text-align: center;'>{{dracoCountCall}}</td>
+            <td style='border: solid 1px black;text-align: center;'>{{fishTime}}</td>
+            <td style='border: solid 1px black;text-align: center;'>{{fishing}}</td>
+            <td style='border: solid 1px black;text-align: center;'>
+                {{#each fishes}}
+                    {{this}}
+                {{/each}}
+            </td>
         </tr>
         {{/each}}
         </tbody>

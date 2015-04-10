@@ -181,6 +181,12 @@
             "active":true,
             "hidden":false,
             "what": "Picks a random person from the office"
+        },
+        "fish":{
+            "active": true,
+            "hidden":false,
+            "what": "Cast out your fishing line and catch some fish!",
+            "extra": "cast"
         }
     }
 }

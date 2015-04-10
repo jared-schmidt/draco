@@ -8,12 +8,15 @@ autopublish
 insecure
 
 http
+random
 iron:router
+
+meteorhacks:kadira
+meteorhacks:kadira-profiler
 
 #particle4dev:meteor-cron2
 percolate:synced-cron
 meteorhacks:npm
-
 
 npm-container
 
