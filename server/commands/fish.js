@@ -15,9 +15,12 @@ fish = {
                     case 'cast':
                         message = fish.cast(slack['slack_id']);
                         break;
-                    case 'reset':
-                        fish.reset(slack['slack_id']);
+                    case 'reel':
+                        fish.reel(slack['slack_id']);
                         message = "Reset line!";
+                        break;
+                    case 'fishes':
+                        message = "You have " + fish.fishes(slack['slack_id']) + " fish(es).";
                         break;
                     default:
                         message = "Yeah, that isn't a command.";
@@ -38,6 +41,7 @@ fish = {
                     console.log("fishing");
                     People.update({'_id': person._id}, {$set:{'fishing':true}});
                     Meteor.call('caughtFish', person);
+                    message = "You are now fishing!";
                 } else {
                     console.log("already");
                     message = 'already fishing!';
@@ -53,7 +57,15 @@ fish = {
         }
         return message;
     },
-    'reset': function(slack_id){
+    'reel': function(slack_id){
         People.update({'_id': slack_id}, {$set:{'fishing': false}, $set:{'fishTime': -1}});
+    },
+    'fishes': function(slack_id){
+        var person = People.findOne({'id': slack_id});
+        var count = -1;
+        if (person){
+            count = person.fishes.length;
+        }
+        return count
     }
 }

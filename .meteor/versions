@@ -56,6 +56,7 @@ meteorhacks:npm@1.3.0
 minifiers@1.1.4
 minimongo@1.0.7
 mobile-status-bar@1.0.3
+modweb:flipclock@0.0.1
 mongo@1.1.0
 mongo-livedata@1.0.8
 mrt:moment@2.8.1

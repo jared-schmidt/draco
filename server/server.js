@@ -23,62 +23,102 @@ if (Meteor.isServer) {
       var slack_api_token = Meteor.settings['slack_api_token'];
 
       var randomTime = Random.fraction() * 100000;
-      console.log(randomTime);
       People.update({'_id': person._id}, {$set:{'fishTime':randomTime}});
-      var chance = Random.fraction() * 100;
 
       var fishList = [
         {
-        'name': 'blue',
-        'chance': 80
+          'name': 'blue',
+          'chance': 80
         },
         {
           'name': 'gold',
-          'chance': 3
+          'chance': 4
         },
         {
           'name': 'red',
           'chance': 70
         },
         {
-          'name': 'blue',
-          'chance': 50
-        },
-        {
           'name': 'pink',
           'chance': 13
+        },
+        {
+          'name': 'rainbow',
+          'chance': 18
+        },
+        {
+          'name': 'boot',
+          'chance': 99
+        },
+        {
+          'name': 'bottle',
+          'chance': 98
+        },
+        {
+          'name':'silver',
+          'chance': 5
+        },
+        {
+          'name': 'clear',
+          'chance': Random.fraction() * 100
+        },
+        {
+          'name': 'purple',
+          'chance': 43
+        },
+        {
+          'name': 'palomino',
+          'chance': 7
+        },
+        {
+          'name': 'steve',
+          'chance': 1
+        },
+        {
+          'name': 'white',
+          'chance': Random.fraction() * 100
+        },
+        {
+          'name': 'black',
+          'chance': Random.fraction() * 100
         }
       ]
 
-      var fish = Random.choice(fishList)
-
-      if (fish.chance >= chance){
-        outMsg = '@'+person['name'] + " caught " + fish.name + ' fish!';
-        People.update({'_id': person._id}, {$push: {'fishes': fish.name}});
-      } else {
-        outMsg = '@'+person['name'] + " just lost a " + fish.name + ' fish!';
-      }
-
       var obj = {
-        'message': outMsg,
-        'userid': person._id
+        // 'message': outMsg,
+        'userid': person._id,
+        'name': person.name
       }
 
       Meteor.setTimeout(function(){
+
+        var chance = Random.fraction() * 100;
+        var fish = Random.choice(fishList)
+
+        if (fish.chance >= chance){
+          outMsg = '@'+person['name'] + " caught " + fish.name + ' fish!';
+          People.update({'_id': person._id}, {$push: {'fishes': fish.name}});
+        } else {
+          outMsg = '@'+person['name'] + " just lost a " + fish.name + ' fish!';
+        }
+
         People.update({'_id': obj.userid}, {$set:{'fishing':false}});
 
         var payload = {
             "token":slack_api_token,
-            "channel":'G046CUH0D',
-            "text": obj.message,
-            "icon_emoji": ':ghost:',
-            "username": "Draco (Ghost)",
+            "channel":'@'+obj.name,
+            "text": outMsg,
+            "icon_emoji": ':fish:',
+            "username": "Fish",
             'parse':"full"
         }
         var result = HTTP.call("GET", url, {params: payload});
 
       }, randomTime, obj);
-      message = 'FISH MESSAGE!!!'
+
+
+
+      // message = 'FISH MESSAGE!!!'
     }
   });
 

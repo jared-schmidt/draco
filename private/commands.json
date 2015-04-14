@@ -186,7 +186,7 @@
             "active": true,
             "hidden":false,
             "what": "Cast out your fishing line and catch some fish!",
-            "extra": "cast"
+            "extra": "cast | fishes | reel"
         }
     }
 }
