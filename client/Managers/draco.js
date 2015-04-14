@@ -1,5 +1,35 @@
 if (Meteor.isClient) {
 
+  Meteor.startup(function () {
+    // code to run on server at startup
+    // Meteor.call('publishNotification', {
+    //     title: 'Fish',
+    //     body: "Hello",
+    //     icon: 'brown-bag.png'
+    // });
+
+  });
+
+
+  Deps.autorun(function() {
+      Meteor.subscribe('messages');
+      Notification.requestPermission();
+      // Meteor.subscribe('desktopNotifications');
+      Meteor.autosubscribe(function() {
+          DesktopNotifications.find({}).observe({
+              added: function(notification) {
+                  new Notification(notification.title, {
+                      dir: 'auto',
+                      lang: 'en-US',
+                      body: notification.body,
+                      icon: notification.icon
+                  });
+              }
+          });
+      });
+  });
+
+
   // counter starts at 0
   Session.setDefault("counter", 0);
 
@@ -19,8 +49,17 @@ if (Meteor.isClient) {
   });
 
 
+
   Template.home.events({
-    'click button': function () {
+    'click #yourButton': function () {
+      alert("no");
+      // Meteor.call('publishNotification', {
+      //     title: 'Orders Being Placed',
+      //     body: "Test Notification",
+      //     icon: 'brown-bag.png'
+      // });
+    },
+    'click #count': function () {
       // increment the counter when button is clicked
       Session.set("counter", Session.get("counter") + 1);
 

@@ -114,12 +114,25 @@ if (Meteor.isServer) {
         }
         var result = HTTP.call("GET", url, {params: payload});
 
+        Meteor.call('publishNotification', {
+            title: 'Fish',
+            body: outMsg,
+            icon: 'brown-bag.png'
+        });
+
       }, randomTime, obj);
 
 
 
       // message = 'FISH MESSAGE!!!'
-    }
+    },
+    publishNotification: function(notification){
+            DesktopNotifications.remove({});
+            DesktopNotifications.insert(notification);
+            setTimeout(Meteor.bindEnvironment(function() {
+                DesktopNotifications.remove({}); //remove all again so we don't get pop ups when first loading
+            }));
+        }
   });
 
 }

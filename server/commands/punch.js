@@ -10,6 +10,7 @@ punch = {
             if(person_to){
                 People.update({'_id': person_to._id}, {$inc:{'punched':1}});
                 outgoing_bot(slack['slack_id'], "@"+person_from['name']  + " punched @"+ person_name, slack['channel_id']);
+                message = "KO";
             }else{
                 message = "Failed to find person.";
             }
