@@ -132,7 +132,16 @@ if (Meteor.isServer) {
             setTimeout(Meteor.bindEnvironment(function() {
                 DesktopNotifications.remove({}); //remove all again so we don't get pop ups when first loading
             }));
-        }
+    },
+    pushSound:function(soundUrl){
+      Sounds.remove({});
+      Sounds.insert({
+        'url':soundUrl
+      });
+      setTimeout(Meteor.bindEnvironment(function(){
+        Sounds.remove({});
+      }));
+    }
   });
 
 }

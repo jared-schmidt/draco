@@ -2,12 +2,6 @@ if (Meteor.isClient) {
 
   Meteor.startup(function () {
     // code to run on server at startup
-    // Meteor.call('publishNotification', {
-    //     title: 'Fish',
-    //     body: "Hello",
-    //     icon: 'brown-bag.png'
-    // });
-
   });
 
 
@@ -16,6 +10,7 @@ if (Meteor.isClient) {
       Notification.requestPermission();
       // Meteor.subscribe('desktopNotifications');
       Meteor.autosubscribe(function() {
+
           DesktopNotifications.find({}).observe({
               added: function(notification) {
                   new Notification(notification.title, {
@@ -25,6 +20,14 @@ if (Meteor.isClient) {
                       icon: notification.icon
                   });
               }
+          });
+
+          Sounds.find({}).observe({
+            added:function(sound){
+              var sound = new Howl({
+                urls:[sound.url]
+              }).play();
+            }
           });
       });
   });
