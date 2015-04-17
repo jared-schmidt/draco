@@ -38,6 +38,14 @@ sound = {
                         url = 'http://themushroomkingdom.net/sounds/wav/smb/smb_jump-small.wav';
                         message = "Up you go!";
                         break;
+                    case 'yahoo':
+                        url = base_url + 'yahoo.mp3';
+                        message = "Yahoo!";
+                        break;
+                    case '77days':
+                        url = base_url + '77days.mp3';
+                        message = "Noooooooooooooooooooooooo!";
+                        break;
                     default:
                         message = "Is that a sound?";
                         break;
