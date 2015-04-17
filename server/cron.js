@@ -7,7 +7,7 @@ if (Meteor.isServer) {
     var payload = {
         "token":slack_api_token,
         "channel":channel,
-        "text": '@group: ' + message,
+        "text": message,
         "icon_emoji": ':ghost:',
         "username": "Draco (Ghost)",
         'parse':"full"
@@ -51,6 +51,10 @@ if (Meteor.isServer) {
     job: function() {
       image = 'http://dracobot.meteor.com/images/goodbye.jpg';
       bot_talk(image, 'G045PRA4A');
+
+      var base_url = 'http://dracobot.meteor.com/sounds/';
+      var url = base_url + 'home.mp3';
+      Meteor.call('pushSound', url);
     }
   });
 
@@ -60,7 +64,7 @@ if (Meteor.isServer) {
       return parser.text('at 2:00pm on Thurs');
     },
     job: function() {
-      bot_talk('Vote http://brown-bag.meteor.com/', 'G045PRA4A');
+      bot_talk('@group: Vote http://brown-bag.meteor.com/', 'G045PRA4A');
     }
   });
 
@@ -71,7 +75,7 @@ if (Meteor.isServer) {
       return parser.text('at 8:00pm on the last day of the month');
     },
     job: function() {
-      bot_talk('Remember to submit your time. https://problemsolutions.tsheets.com/', 'G045PRA4A');
+      bot_talk('@group: Remember to submit your time. https://problemsolutions.tsheets.com/', 'G045PRA4A');
     }
   });
 
@@ -90,7 +94,7 @@ if (Meteor.isServer) {
       return th_scheduler;
     },
     job: function() {
-      bot_talk('Remember to submit your time. https://problemsolutions.tsheets.com/', 'G045PRA4A');
+      bot_talk('@group: Remember to submit your time. https://problemsolutions.tsheets.com/', 'G045PRA4A');
     }
   });
 
