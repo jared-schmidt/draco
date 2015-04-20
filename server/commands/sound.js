@@ -144,6 +144,50 @@ sound = {
                         url = base_url + 'doh.mp3';
                         message = "D'OH!";
                         break;
+                    case 'badum':
+                        url = base_url + 'badum.mp3';
+                        message = 'That WAS funny!';
+                        break;
+                    case 'drumroll':
+                        url = base_url + 'drumroll.mp3';
+                        message = "Here it comes!";
+                        break;
+                    case 'mmkay':
+                        url = base_url + 'mmkay.mp3';
+                        message = 'mmmmmmmmmmmmmmmmmmmmmmmmmmkay';
+                        break;
+                    case 'panda':
+                        url = base_url + 'panda.mp3';
+                        message = 'Poor panda';
+                        break;
+                    case 'hero':
+                        url = base_url + 'hero.mp3';
+                        message = 'great...';
+                        break;
+                    case 'fault':
+                        url = base_url + 'fault.mp3';
+                        message = '[insert message here]';
+                        break;
+                    case 'dumb':
+                        url = base_url + 'dumb.mp3';
+                        message = '[insert message here]';
+                        break;
+                    case 'donthate':
+                        url = base_url + 'donthate.mp3';
+                        message = '[insert message here]';
+                        break;
+                    case 'bubblegum':
+                        url = base_url + 'bubblegum.mp3';
+                        message = '[insert message here]';
+                        break;
+                    case 'king':
+                        url = base_url + 'king.mp3';
+                        message = '[insert message here]';
+                        break;
+                    case 'slacker':
+                        url = base_url + 'slacker.mp3';
+                        message = '[insert message here]';
+                        break;
                     default:
                         message = "Is that a sound?";
                         break;

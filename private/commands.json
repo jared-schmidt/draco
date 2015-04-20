@@ -192,7 +192,7 @@
             "active": true,
             "hidden": false,
             "what": "Plays a sound on the dracobot website",
-            "extra": "text"
+            "extra": "sound"
         }
     }
 }
