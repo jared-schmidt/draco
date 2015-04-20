@@ -193,6 +193,12 @@
             "hidden": false,
             "what": "Plays a sound on the dracobot website",
             "extra": "sound"
+        },
+        "talk":{
+            "active":true,
+            "hidden":false,
+            "what":"Text-to-Speech",
+            "extra":"text|lang(default is english)"
         }
     }
 }

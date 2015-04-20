@@ -24,9 +24,14 @@ if (Meteor.isClient) {
 
           Sounds.find({}).observe({
             added:function(sound){
-              var sound = new Howl({
-                urls:[sound.url]
-              }).play();
+              if (!sound.speech){
+                var sound = new Howl({
+                  urls:[sound.url]
+                }).play();
+              } else {
+                tts.speak(sound.url, sound.lang);
+              }
+              Meteor.call('removeSound', sound._id);
             }
           });
       });

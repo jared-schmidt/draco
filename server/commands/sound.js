@@ -195,7 +195,7 @@ sound = {
             }
 
             if(url){
-                Meteor.call('pushSound', url);
+                Meteor.call('pushSound', url, 'en', false);
             } else {
                 message = "Lost the sound somewhere?";
             }

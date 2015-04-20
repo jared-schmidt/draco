@@ -133,14 +133,19 @@ if (Meteor.isServer) {
                 DesktopNotifications.remove({}); //remove all again so we don't get pop ups when first loading
             }));
     },
-    pushSound:function(soundUrl){
-      Sounds.remove({});
+    pushSound:function(soundUrl, lang, speech){
+      // Sounds.remove({});
       Sounds.insert({
-        'url':soundUrl
+        'url':soundUrl,
+        'speech': speech,
+        'lang': lang
       });
-      setTimeout(Meteor.bindEnvironment(function(){
-        Sounds.remove({});
-      }));
+      // setTimeout(Meteor.bindEnvironment(function(){
+      //   Sounds.remove({});
+      // }));
+    },
+    removeSound:function(soundID){
+      Sounds.remove({'_id':soundID});
     }
   });
 
