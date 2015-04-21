@@ -188,14 +188,18 @@ sound = {
                         url = base_url + 'slacker.mp3';
                         message = '[insert message here]';
                         break;
+                    case 'fanfare':
+                        url = base_url + 'fanfare.mp3';
+                        message = 'Go!'
+                        break;
                     default:
-                        message = "Is that a sound?";
+                        message = "Is that a sound? Check here https://github.com/jared-schmidt/draco/wiki/Sounds";
                         break;
                 }
             }
 
             if(url){
-                Meteor.call('pushSound', url, 'en', false);
+                Meteor.call('pushSound', slack['slack_name'], url, 'en', false);
             } else {
                 message = "Lost the sound somewhere?";
             }

@@ -54,7 +54,36 @@ if (Meteor.isServer) {
 
       var base_url = 'http://dracobot.meteor.com/sounds/';
       var url = base_url + 'home.mp3';
-      Meteor.call('pushSound', url);
+      Meteor.call('pushSound', 'draco', url, 'en', false);
+    }
+  });
+
+  // 1:00pm = 9:00am
+  // 2:00pm = 10:00am
+  // 3:00pm = 11:00am
+  // 4:00pm = 12:00pm
+  // 5:00pm = 1:00pm
+  // 6:00pm = 2:00pm
+  // 7:00pm = 3:00pm
+  // 8:00pm = 4:00pm
+
+  SyncedCron.add({
+    name: 'Morning News',
+    schedule: function(parser) {
+      return parser.text('every weekday at 1:30pm');
+    },
+    job: function() {
+      var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?zip=15904,us&units=imperial'
+      var weatherData = get_call(weatherURL);
+
+      var currentTemp = weatherData.main.temp;
+      var currentWeatherType = weatherData.weather[0].description;
+      var townName = weatherData.name;
+
+      var weatherString = 'It is currently ' + currentTemp + ' degrees in ' + townName + ' with ' + currentWeatherType;
+
+      var message = 'Gooooood Morning, Problem Solutions! ' + weatherString;
+      Meteor.call('pushSound', 'draco', message, 'en', true);
     }
   });
 
@@ -65,6 +94,7 @@ if (Meteor.isServer) {
     },
     job: function() {
       bot_talk('@group: Vote http://brown-bag.meteor.com/', 'G045PRA4A');
+      Meteor.call('pushSound', 'draco', 'Time to vote on the brown-bag site.', 'en', true);
     }
   });
 
@@ -76,6 +106,7 @@ if (Meteor.isServer) {
     },
     job: function() {
       bot_talk('@group: Remember to submit your time. https://problemsolutions.tsheets.com/', 'G045PRA4A');
+      Meteor.call('pushSound', 'draco', 'Remember to submit your time', 'en', true);
     }
   });
 
@@ -95,6 +126,7 @@ if (Meteor.isServer) {
     },
     job: function() {
       bot_talk('@group: Remember to submit your time. https://problemsolutions.tsheets.com/', 'G045PRA4A');
+      Meteor.call('pushSound', 'draco', 'Remember to submit your time', 'en', true);
     }
   });
 

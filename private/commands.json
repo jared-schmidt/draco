@@ -195,10 +195,16 @@
             "extra": "sound"
         },
         "talk":{
-            "active":true,
-            "hidden":false,
-            "what":"Text-to-Speech",
-            "extra":"text|lang(default is english)"
+            "active": true,
+            "hidden": false,
+            "what": "Text-to-Speech for given language (default is english) [kinda]",
+            "extra": "text|lang"
+        },
+        "weather":{
+            "active": true,
+            "hidden": false,
+            "what": "Returns the weather for a given zip (or defaults to 15904)",
+            "extra": "zipCode"
         }
     }
 }

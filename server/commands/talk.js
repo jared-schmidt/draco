@@ -10,10 +10,12 @@ talk = {
             text = slack['text'];
         }
 
-
-        Meteor.call('pushSound', text, lang, true);
-
-        message = "Sent";
+        if(text){
+            Meteor.call('pushSound', slack['slack_name'], text, lang, true);
+            message = "Sent";
+        } else {
+            message = "I can't say that!";
+        }
 
         return message;
     }
