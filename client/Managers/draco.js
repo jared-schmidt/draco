@@ -26,8 +26,11 @@ if (Meteor.isClient) {
             added:function(sound){
               if(!sound.played){
                 if (!sound.speech){
-                  var sound = new Howl({
-                    urls:[sound.url]
+                  var soundHowl = new Howl({
+                    urls:[sound.url],
+                    onend: function(){
+                      console.log("sound over");
+                    }
                   }).play();
                 } else {
                   tts.speak(sound.url, sound.lang);

@@ -68,6 +68,20 @@
           "version": "2.4.1"
         }
       }
+    },
+    "nlp_compromise": {
+      "version": "0.3.9"
+    },
+    "ws": {
+      "version": "0.7.1",
+      "dependencies": {
+        "options": {
+          "version": "0.0.6"
+        },
+        "ultron": {
+          "version": "1.0.1"
+        }
+      }
     }
   }
 }
