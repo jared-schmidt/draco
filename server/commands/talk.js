@@ -1,7 +1,7 @@
 talk = {
     start:function(slack){
         var text = '';
-        var lang = 'en';
+        var lang = 'en_gb';
         if (slack['text'].indexOf('|') > 0){
             var txtObj = slack['text'].split('|')
             text = txtObj[0];
