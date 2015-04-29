@@ -140,7 +140,8 @@ if (Meteor.isServer) {
         'url':soundUrl,
         'speech': speech,
         'lang': lang,
-        'played': false
+        'played': false,
+        'playing': false
       });
       // setTimeout(Meteor.bindEnvironment(function(){
       //   Sounds.remove({});
@@ -148,7 +149,11 @@ if (Meteor.isServer) {
     },
     playedSound:function(soundID){
       console.log("Sounds ID -> ", soundID);
-      Sounds.update({'_id':soundID}, {$set:{'played':true}});
+      Sounds.update({'_id':soundID}, {$set:{'played':true, 'playing': false}});
+    },
+    isPlaying: function(){
+      var soundsCount = Sounds.find({'playing': true}).count();
+      return soundsCount > 0
     }
   });
 

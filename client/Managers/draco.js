@@ -36,6 +36,8 @@ if (Meteor.isClient) {
                   tts.speak(sound.url, sound.lang);
                 }
                 Meteor.call('playedSound', sound._id);
+              } else {
+                console.log("other sound still playing...");
               }
             }
           });

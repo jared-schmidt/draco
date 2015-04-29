@@ -82,8 +82,19 @@ if (Meteor.isServer) {
 
       var weatherString = 'It is currently ' + currentTemp + ' degrees in ' + townName + ' with ' + currentWeatherType;
 
-      var message = 'Gooooood Morning, Problem Solutions! ' + weatherString;
-      Meteor.call('pushSound', 'draco', message, 'en', true);
+      var message = 'Good Morning, Problem Solutions! ' + weatherString;
+      Meteor.call('pushSound', 'draco', message, 'en_uk', true);
+    }
+  });
+
+  SyncedCron.add({
+    name: 'Train Call',
+    schedule: function(parser) {
+      return parser.text('every weekday at 7:00pm');
+    },
+    job: function() {
+      var message = 'The Sweet Tarts running-train will be departing in 10 mins!';
+      Meteor.call('pushSound', 'draco', message, 'en_uk', true);
     }
   });
 

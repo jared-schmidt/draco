@@ -192,6 +192,10 @@ sound = {
                         url = base_url + 'fanfare.mp3';
                         message = 'Go!'
                         break;
+                    case 'medic':
+                        url = base_url + 'medic.mp3';
+                        message = 'Medic';
+                        break;
                     default:
                         message = "Is that a sound? Check here https://github.com/jared-schmidt/draco/wiki/Sounds";
                         break;
