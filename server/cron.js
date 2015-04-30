@@ -70,7 +70,7 @@ if (Meteor.isServer) {
   SyncedCron.add({
     name: 'Morning News',
     schedule: function(parser) {
-      return parser.text('every weekday at 1:30pm');
+      return parser.text('every weekday at 1:05pm');
     },
     job: function() {
       var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?zip=15904,us&units=imperial'
@@ -90,10 +90,10 @@ if (Meteor.isServer) {
   SyncedCron.add({
     name: 'Train Call',
     schedule: function(parser) {
-      return parser.text('every weekday at 7:00pm');
+      return parser.text('every weekday at 6:50pm');
     },
     job: function() {
-      var message = 'The Sweet Tarts running-train will be departing in 10 mins!';
+      var message = 'The Sweet Tarts train will be departing in 10 mins!';
       Meteor.call('pushSound', 'draco', message, 'en_uk', true);
     }
   });
@@ -101,7 +101,7 @@ if (Meteor.isServer) {
   SyncedCron.add({
     name: 'Brown-Bag Time',
     schedule: function(parser) {
-      return parser.text('at 2:00pm on Thurs');
+      return parser.text('at 1:28pm on Thurs');
     },
     job: function() {
       bot_talk('@group: Vote http://brown-bag.meteor.com/', 'G045PRA4A');
