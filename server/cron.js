@@ -70,10 +70,10 @@ if (Meteor.isServer) {
   SyncedCron.add({
     name: 'Morning News',
     schedule: function(parser) {
-      return parser.text('every weekday at 1:05pm');
+      return parser.text('every weekday at 1:18pm');
     },
     job: function() {
-      var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?zip=15904,us&units=imperial'
+      var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?zip=15904,us&units=imperial';
       var weatherData = get_call(weatherURL);
 
       var currentTemp = weatherData.main.temp;
