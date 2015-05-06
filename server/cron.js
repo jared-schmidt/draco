@@ -58,14 +58,15 @@ if (Meteor.isServer) {
     }
   });
 
-  // 1:00pm = 9:00am
-  // 2:00pm = 10:00am
-  // 3:00pm = 11:00am
-  // 4:00pm = 12:00pm
-  // 5:00pm = 1:00pm
-  // 6:00pm = 2:00pm
-  // 7:00pm = 3:00pm
-  // 8:00pm = 4:00pm
+  // 1:00pm = 9:00am (13 hour)
+  // 2:00pm = 10:00am (14 hour)
+  // 3:00pm = 11:00am (15 hour)
+  // 4:00pm = 12:00pm (16 hour)
+  // 5:00pm = 1:00pm (17 hour)
+  // 6:00pm = 2:00pm (18 hour)
+  // 7:00pm = 3:00pm (19 hour)
+  // 8:00pm = 4:00pm (20 hour)
+
 
   SyncedCron.add({
     name: 'Morning News',
@@ -75,22 +76,36 @@ if (Meteor.isServer) {
     job: function() {
       var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?zip=15904,us&units=imperial';
       var weatherData = get_call(weatherURL);
+      if (weatherData){
+        var currentTemp = weatherData.main.temp;
+        var currentWeatherType = weatherData.weather[0].description;
+        var townName = weatherData.name;
 
-      var currentTemp = weatherData.main.temp;
-      var currentWeatherType = weatherData.weather[0].description;
-      var townName = weatherData.name;
+        var weatherString = 'It is currently ' + currentTemp + ' degrees in ' + townName + ' with ' + currentWeatherType;
 
-      var weatherString = 'It is currently ' + currentTemp + ' degrees in ' + townName + ' with ' + currentWeatherType;
+        var message = 'Good Morning, Problem Solutions! ' + weatherString;
+        Meteor.call('pushSound', 'draco', message, 'en_uk', true);
+      } else  {
+        var message = "No weather found for today.... Good bye."
+        Meteor.call('pushSound', 'draco', message, 'en_uk', true);
+      }
+    }
+  });
 
-      var message = 'Good Morning, Problem Solutions! ' + weatherString;
-      Meteor.call('pushSound', 'draco', message, 'en_uk', true);
+  SyncedCron.add({
+    name: 'hour clock',
+    schedule: function(parser) {
+      return parser.recur().every().hour().between(13,20).onWeekday();
+    },
+    job: function() {
+        Meteor.call('pushSound', 'draco', "dong", 'en_uk', true);
     }
   });
 
   SyncedCron.add({
     name: 'Train Call',
     schedule: function(parser) {
-      return parser.text('every weekday at 6:50pm');
+      return parser.text('every weekday at 5:50pm');
     },
     job: function() {
       var message = 'The Sweet Tarts train will be departing in 10 mins!';

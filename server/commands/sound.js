@@ -196,6 +196,10 @@ sound = {
                         url = base_url + 'medic.mp3';
                         message = 'Medic';
                         break;
+                    case 'fedup':
+                        url = base_url + 'fedup.mp3';
+                        message = 'That sucks';
+                        break;
                     default:
                         message = "Is that a sound? Check here https://github.com/jared-schmidt/draco/wiki/Sounds";
                         break;

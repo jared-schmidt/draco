@@ -15,11 +15,21 @@ talk = {
         var stringToLong = text.length >= charLimit;
 
         if(text && !stringToLong){
+            if (text[0] != '~'){
+                text = text.replace('ding', 'dong');
+            }
+            text = text.replace('~', '');
+            if (stringToLong){
+                text = text.substring(0, 99);
+                message = 'Auto cropped that message for you!';
+            } else {
+                message = 'Sent sound #' + Sounds.find({}).count();
+            }
             Meteor.call('pushSound', slack['slack_name'], text, lang, true);
-            message = "Sent";
-        } else if (text && stringToLong){
-            message = "There is a "+ charLimit +" character limit. Your text is " + text.length + " character(s). That is " + (text.length - charLimit) + " character(s) to long.";
         }
+        // } else if (text && stringToLong){
+        //     message = "There is a "+ charLimit +" character limit. Your text is " + text.length + " character(s). That is " + (text.length - charLimit) + " character(s) to long.";
+        // }
         else {
             message = "I can't say that!";
         }
