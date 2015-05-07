@@ -205,6 +205,18 @@
             "hidden": false,
             "what": "Returns the weather for a given zip (or defaults to 15904)",
             "extra": "zipCode"
+        },
+        "readtweet":{
+            "active": true,
+            "hidden": false,
+            "what": "Reads a tweet for a given hashtag",
+            "extra": "hashtag"
+        },
+        "welcome": {
+            "active": true,
+            "hidden": false,
+            "what": "Welcome a new people to meet draco!",
+            "extra": "username"
         }
     }
 }

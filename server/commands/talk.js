@@ -14,7 +14,7 @@ talk = {
 
         var stringToLong = text.length >= charLimit;
 
-        if(text && !stringToLong){
+        if(text){
             if (text[0] != '~'){
                 text = text.replace('ding', 'dong');
             }
