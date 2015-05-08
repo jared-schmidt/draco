@@ -15,10 +15,10 @@ talk = {
         var stringToLong = text.length >= charLimit;
 
         if(text){
-            if (text[0] != '~'){
-                text = text.replace('ding', 'dong');
-            }
-            text = text.replace('~', '');
+            // if (text[0] != '~'){
+            //     text = text.replace('ding', 'dong');
+            // }
+            // text = text.replace('~', '');
             if (stringToLong){
                 text = text.substring(0, 99);
                 message = 'Auto cropped that message for you!';
