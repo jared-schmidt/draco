@@ -27,13 +27,13 @@ talk = {
             //     text = text.replace('ding', 'dong');
             // }
             // text = text.replace('~', '');
-            if (stringToLong){
+            // if (stringToLong){
                 // text = text.substring(0, 99);
                 // message = 'Auto cropped that message for you!';
-                message = "NO MORE CROP";
-            } else {
-                message = 'Sent sound #' + PastSounds.find({}).count();
-            }
+                // message = "NO MORE CROP";
+            // } else {
+                message = 'Sent sound #' + PastSounds.find({}).count() + ' character(s) of text ' + text.length;
+            // }
 
 
             Meteor.call('pushSound', slack['slack_name'], text, lang, true);

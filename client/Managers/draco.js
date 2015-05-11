@@ -3,17 +3,17 @@ if (Meteor.isClient) {
   Meteor.startup(function () {
     // code to run on server at startup
     // console.log(Meteor.connection._lastSessionId)
-    if (hasGetUserMedia()) {
-      // Good to go!
-      console.log("good to go");
-    } else {
-      alert('getUserMedia() is not supported in your browser');
-    }
+    // if (hasGetUserMedia()) {
+    //   // Good to go!
+    //   console.log("good to go");
+    // } else {
+    //   alert('getUserMedia() is not supported in your browser');
+    // }
 
-    function hasGetUserMedia() {
-      return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-                navigator.mozGetUserMedia || navigator.msGetUserMedia);
-    }
+    // function hasGetUserMedia() {
+    //   return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+    //             navigator.mozGetUserMedia || navigator.msGetUserMedia);
+    // }
 
     // if ('SpeechRecognition' in window) {
     //   // Speech recognition support. Talk to your apps!
@@ -22,6 +22,9 @@ if (Meteor.isClient) {
     //   console.error('No Speech');
     // }
   });
+
+
+
 
   var DracoTalk = null;
   if ('speechSynthesis' in window) {
@@ -180,22 +183,22 @@ if (Meteor.isClient) {
                     index = sound.lang;
                   }
 
-                  console.log(index);
-                  console.log(voices[index]);
+                  if (voices){
                   DracoTalk.voice = voices[index];
                   DracoTalk.voiceURI = voices[index].voiceURI;
                   DracoTalk.lang = voices[index].lang;
                   DracoTalk.volume = 1;
 
-                  DracoTalk.text = sound.url;
+                    DracoTalk.text = sound.url;
 
-                  speechUtteranceChunker(DracoTalk, {
-                      chunkLength: 120
-                  }, function () {
-                      //some code to execute when done
-                      console.log('done');
-                  });
+                    speechUtteranceChunker(DracoTalk, {
+                        chunkLength: 120
+                    }, function () {
+                        //some code to execute when done
+                        console.log('done');
+                    });
 
+                  }
                   // window.speechSynthesis.speak(DracoTalk);
                   DracoTalk.onend = function(e) {
                     console.log('Finished in ' + event.elapsedTime + ' seconds.');
@@ -249,12 +252,17 @@ if (Meteor.isClient) {
       alert("If didn't load press button 1 more time");
     },
     'click #yourButton': function () {
-      alert("no");
-      // Meteor.call('publishNotification', {
-      //     title: 'Orders Being Placed',
-      //     body: "Test Notification",
-      //     icon: 'brown-bag.png'
-      // });
+      // var recognition = new webkitSpeechRecognition();
+      // recognition.continuous = false;
+      // recognition.interimResults = true;
+      // recognition.onresult = function(event) {
+      //   console.log(event);
+      //   console.log(event.results[0][0].transcript)
+      //   if (event.results[0][0].transcript.indexOf("ok draco") >= 0){
+      //     console.log("Match");
+      //   }
+      // }
+      // recognition.start();
     },
     'click #count': function () {
       // increment the counter when button is clicked

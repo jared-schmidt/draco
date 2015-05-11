@@ -9,7 +9,7 @@ sound = {
             command = command.trim();
             command = command.toLowerCase();
             var url = null;
-            var base_url = 'http://dracobot.meteor.com/sounds/';
+            var base_url = 'http://dracobot2.meteor.com/sounds/';
             if (command){
                 text = text.replace(command, '');
                 text = text.trim();
