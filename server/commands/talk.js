@@ -4,6 +4,14 @@ talk = {
         var lang = 'en_gb';
         var charLimit = 100;
 
+        var person = People.findOne({'id': slack['slack_id']});
+
+        console.log(person);
+
+        if (person.defaultTalk){
+            lang = person.defaultTalk;
+        }
+
         if (slack['text'].indexOf('|') > 0){
             var txtObj = slack['text'].split('|')
             text = txtObj[0];
@@ -20,12 +28,16 @@ talk = {
             // }
             // text = text.replace('~', '');
             if (stringToLong){
-                text = text.substring(0, 99);
-                message = 'Auto cropped that message for you!';
+                // text = text.substring(0, 99);
+                // message = 'Auto cropped that message for you!';
+                message = "NO MORE CROP";
             } else {
-                message = 'Sent sound #' + Sounds.find({}).count();
+                message = 'Sent sound #' + PastSounds.find({}).count();
             }
+
+
             Meteor.call('pushSound', slack['slack_name'], text, lang, true);
+
         }
         // } else if (text && stringToLong){
         //     message = "There is a "+ charLimit +" character limit. Your text is " + text.length + " character(s). That is " + (text.length - charLimit) + " character(s) to long.";

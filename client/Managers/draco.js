@@ -2,7 +2,98 @@ if (Meteor.isClient) {
 
   Meteor.startup(function () {
     // code to run on server at startup
+    // console.log(Meteor.connection._lastSessionId)
+    if (hasGetUserMedia()) {
+      // Good to go!
+      console.log("good to go");
+    } else {
+      alert('getUserMedia() is not supported in your browser');
+    }
+
+    function hasGetUserMedia() {
+      return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                navigator.mozGetUserMedia || navigator.msGetUserMedia);
+    }
+
+    // if ('SpeechRecognition' in window) {
+    //   // Speech recognition support. Talk to your apps!
+    //   console.log("Speech recognition support.");
+    // } else {
+    //   console.error('No Speech');
+    // }
   });
+
+  var DracoTalk = null;
+  if ('speechSynthesis' in window) {
+   // Synthesis support. Make your web apps talk!
+   console.log("Synthesis support.");
+   DracoTalk = new SpeechSynthesisUtterance();
+  } else {
+    console.error("No Synthesis support.");
+  }
+
+
+  var speechUtteranceChunker = function (utt, settings, callback) {
+      settings = settings || {};
+      var newUtt;
+      var txt = (settings && settings.offset !== undefined ? utt.text.substring(settings.offset) : utt.text);
+      if (utt.voice && utt.voice.voiceURI === 'native') { // Not part of the spec
+          newUtt = utt;
+          newUtt.text = txt;
+          newUtt.addEventListener('end', function () {
+              if (speechUtteranceChunker.cancel) {
+                  speechUtteranceChunker.cancel = false;
+              }
+              if (callback !== undefined) {
+                  callback();
+              }
+          });
+      }
+      else {
+          var chunkLength = (settings && settings.chunkLength) || 160;
+          var pattRegex = new RegExp('^[\\s\\S]{' + Math.floor(chunkLength / 2) + ',' + chunkLength + '}[.!?,]{1}|^[\\s\\S]{1,' + chunkLength + '}$|^[\\s\\S]{1,' + chunkLength + '} ');
+          var chunkArr = txt.match(pattRegex);
+
+          if (chunkArr[0] === undefined || chunkArr[0].length <= 2) {
+              //call once all text has been spoken...
+              if (callback !== undefined) {
+                  callback();
+              }
+              return;
+          }
+          var chunk = chunkArr[0];
+          newUtt = new SpeechSynthesisUtterance(chunk);
+          var x;
+          for (x in utt) {
+              if (utt.hasOwnProperty(x) && x !== 'text') {
+                  newUtt[x] = utt[x];
+              }
+          }
+          newUtt.addEventListener('end', function () {
+              if (speechUtteranceChunker.cancel) {
+                  speechUtteranceChunker.cancel = false;
+                  return;
+              }
+              settings.offset = settings.offset || 0;
+              settings.offset += chunk.length - 1;
+              speechUtteranceChunker(utt, settings, callback);
+          });
+      }
+
+      if (settings.modifier) {
+          settings.modifier(newUtt);
+      }
+      console.log(newUtt); //IMPORTANT!! Do not remove: Logging the object out fixes some onend firing issues.
+      //placing the speak invocation inside a callback fixes ordering and onend issues.
+      setTimeout(function () {
+          speechSynthesis.speak(newUtt);
+      }, 0);
+  };
+
+  // client code: ping heartbeat every 5 seconds
+  Meteor.setInterval(function () {
+    Meteor.call('keepalive', Meteor.connection._lastSessionId);
+  }, 5000);
 
 
   Deps.autorun(function() {
@@ -22,23 +113,103 @@ if (Meteor.isClient) {
               }
           });
 
+          // MediaStreamTrack.getSources(function(sourceInfos) {
+          //   var audioSource = null;
+
+          //   for (var i = 0; i != sourceInfos.length; ++i) {
+          //     var sourceInfo = sourceInfos[3];
+          //     if (sourceInfo.kind === 'audio') {
+          //       console.log(sourceInfo.id, sourceInfo.label || 'microphone');
+          //       console.log(sourceInfo);
+          //       audioSource = sourceInfo.id;
+          //     } else {
+          //       console.log('Some other kind of source: ', sourceInfo);
+          //     }
+          //   }
+          //   console.log(audioSource);
+          //   sourceSelected(audioSource);
+          // });
+
+          // function sourceSelected(audioSource) {
+          //   var constraints = {
+          //     audio: {
+          //       optional: [{sourceId: audioSource}]
+          //     }
+          //   };
+
+          //   navigator.webkitGetUserMedia(constraints, successCallback, errorCallback);
+          // }
+
+          // successCallback = function(stream){
+          //   var microphone = context.createMediaStreamSource(stream);
+          //   console.log(stream);
+          //   microphone.connect(filter);
+          // };
+
+          // errorCallback = function(err){
+          //   console.log(err);
+          // };
+
           Sounds.find({}).observe({
             added:function(sound){
+              console.log("Sound added to collection");
               if(!sound.played){
                 if (!sound.speech){
                   var soundHowl = new Howl({
                     urls:[sound.url],
+                    onload: function(){
+                      console.log("Sound Loaded");
+                    },
+                    onloaderror: function(err){
+                      console.log("Load error");
+                      console.log(err);
+                    },
+
                     onend: function(){
                       console.log("sound over");
                     }
                   }).play();
                 } else {
-                  tts.speak(sound.url, sound.lang);
+                  // tts.speak(sound.url, sound.lang);
+
+                  var voices = window.speechSynthesis.getVoices();
+                  var index = 1;
+                  if (!isNaN(sound.lang)){
+                    console.log("len -> ", voices.length-1);
+                    if (sound.lang >= 0 && sound.lang < voices.length-1)
+                    index = sound.lang;
+                  }
+
+                  console.log(index);
+                  console.log(voices[index]);
+                  DracoTalk.voice = voices[index];
+                  DracoTalk.voiceURI = voices[index].voiceURI;
+                  DracoTalk.lang = voices[index].lang;
+                  DracoTalk.volume = 1;
+
+                  DracoTalk.text = sound.url;
+
+                  speechUtteranceChunker(DracoTalk, {
+                      chunkLength: 120
+                  }, function () {
+                      //some code to execute when done
+                      console.log('done');
+                  });
+
+                  // window.speechSynthesis.speak(DracoTalk);
+                  DracoTalk.onend = function(e) {
+                    console.log('Finished in ' + event.elapsedTime + ' seconds.');
+                  };
+
                 }
-                Meteor.call('playedSound', sound._id);
-              } else {
-                console.log("other sound still playing...");
+                Meteor.call('playedSound', sound._id, Meteor.connection._lastSessionId);
               }
+            },
+            remove: function(oldSound){
+              console.log("Removed Sound from collection");
+            },
+            changed: function(){
+              console.log("Sound Collection changed");
             }
           });
       });
@@ -58,14 +229,25 @@ if (Meteor.isClient) {
     },
     current_question: function(){
       var questions = Game.find().fetch();
-
-      return questions[questions.length-1].question_question;
+      if (questions[questions.length-1]){
+        return questions[questions.length-1].question_question;
+      }
     }
   });
 
 
 
   Template.home.events({
+    'click #getVoices': function(){
+      var voices = window.speechSynthesis.getVoices();
+      for (var i=0; i<=voices.length;i++){
+        var voice = voices[i];
+        if (voice){
+          $('#voiceTable > tbody:last').append('<tr><td>'+i+'</td><td>'+voice.name+'</td><td>'+voice.lang+'</td></tr>');
+        }
+      }
+      alert("If didn't load press button 1 more time");
+    },
     'click #yourButton': function () {
       alert("no");
       // Meteor.call('publishNotification', {

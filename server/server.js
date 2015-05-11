@@ -1,9 +1,31 @@
 if (Meteor.isServer) {
+
+  Connections = new Meteor.Collection('connections');
+
   Meteor.startup(function () {
     // code to run on server at startup
+    Meteor.onConnection(function(){
+      console.log("cient connected");
+    });
   });
 
+  // server code: clean up dead clients after 60 seconds
+  Meteor.setInterval(function () {
+    var now = (new Date()).getTime();
+    Connections.find({'last_seen': {$lt: (now - 30 * 1000)}}).forEach(function (user) {
+      // do something here for each idle user
+      Connections.remove({'user_id': user.user_id});
+    });
+  });
+
+
   Meteor.methods({
+    keepalive: function (user_id) {
+      if (!Connections.findOne({'user_id': user_id})){
+        Connections.insert({user_id: user_id});
+      }
+      Connections.update({'user_id': user_id}, {$set: {last_seen: (new Date()).getTime()}});
+    },
     'outgoing': function(message){
       var url = 'https://slack.com/api/chat.postMessage';
       var slack_api_token = Meteor.settings['slack_api_token'];
@@ -134,7 +156,7 @@ if (Meteor.isServer) {
             }));
     },
     pushSound:function(name, soundUrl, lang, speech){
-      // Sounds.remove({});
+      
       Sounds.insert({
         'calledby': name,
         'url':soundUrl,
@@ -143,17 +165,28 @@ if (Meteor.isServer) {
         'played': false,
         'playing': false
       });
-      // setTimeout(Meteor.bindEnvironment(function(){
-      //   Sounds.remove({});
-      // }));
+      
+      PastSounds.insert({
+        'calledby': name,
+        'sound': soundUrl,
+        'speech': speech,
+        'lang': lang,
+        'played': false
+      });
+      
     },
-    playedSound:function(soundID){
+    playedSound:function(soundID, client_id){
       console.log("Sounds ID -> ", soundID);
-      Sounds.update({'_id':soundID}, {$set:{'played':true, 'playing': false}});
+      console.log('Played on -> ', client_id);
+      
+      Sounds.update({'_id':soundID}, {$set:{'played':true, 'playing': false}, $addToSet:{'clients': client_id}});
+      PastSounds.update({'_id':soundID}, {$set:{'played':true}, $addToSet:{'clients': client_id}});
+      
+      Sounds.remove({'_id': soundID});
     },
     isPlaying: function(){
       var soundsCount = Sounds.find({'playing': true}).count();
-      return soundsCount > 0
+      return soundsCount > 0;
     }
   });
 

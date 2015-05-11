@@ -22,7 +22,22 @@
     <p>You've pressed the button {{counter}} times.</p>
     <br />
 
-    <button id='yourButton'>Test Notification</button>
+    <!-- <button id='yourButton'>Test Notification</button> -->
+    <br />
+    <p>To change draco voice => "/draco talk {text}|{index}"</p>
+    <br />
+    <button id='getVoices'>Get Voice Table</button>
+    <br />
+    <br />
+    <table id='voiceTable' border="1">
+        <thead>
+            <th>Index</th>
+            <th>Name</th>
+            <th>Lang</th>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <br />
 
     <div>
     <label>Current Question:</label>
@@ -41,6 +56,7 @@
             <th>Fish Time</th>
             <th>Fishing</th>
             <th>Fishes</th>
+            <th>Fish Count</th>
         </thead>
         <tbody style='border: solid 1px black;'>
         {{#each people}}
@@ -63,6 +79,9 @@
                 {{#each fishes}}
                     {{this}}
                 {{/each}}
+            </td>
+            <td style='border: solid 1px black;text-align: center;'>
+                {{fishes.length}}
             </td>
         </tr>
         {{/each}}
