@@ -217,6 +217,11 @@
             "hidden": false,
             "what": "Welcome a new people to meet draco!",
             "extra": "username"
+        },
+        "xkcd": {
+            "active": true,
+            "hidden": false,
+            "what": "Gets the currect xkcd comic"
         }
     }
 }
