@@ -62,28 +62,30 @@
         <tbody style='border: solid 1px black;'>
         {{#each people}}
         <tr style='border: solid 1px black;'>
-            <td style='border: solid 1px black;text-align: center;'>
-            {{#if profile.real_name_normalized}}
-                {{profile.real_name_normalized}}
-            {{else}}
-                {{name}}
-            {{/if}}
-            </td>
-            <td style='border: solid 1px black;text-align: center;'>{{lastCommand}}</td>
-            <td style='border: solid 1px black;text-align: center;'>{{goldstar}}</td>
-            <td style='border: solid 1px black;text-align: center;'>{{punched}}</td>
-            <td style='border: solid 1px black;text-align: center;'>{{question_total}}</td>
-            <td style='border: solid 1px black;text-align: center;'>{{dracoCountCall}}</td>
-            <td style='border: solid 1px black;text-align: center;'>{{fishTime}}</td>
-            <td style='border: solid 1px black;text-align: center;'>{{fishing}}</td>
-            <td style='border: solid 1px black;text-align: center;'>
-                {{#each fishes}}
-                    {{this}}
-                {{/each}}
-            </td>
-            <td style='border: solid 1px black;text-align: center;'>
-                {{fishes.length}}
-            </td>
+            {{#unless deleted}}
+                <td style='border: solid 1px black;text-align: center;'>
+                {{#if profile.real_name_normalized}}
+                    {{profile.real_name_normalized}}
+                {{else}}
+                    {{name}}
+                {{/if}}
+                </td>
+                <td style='border: solid 1px black;text-align: center;'>{{lastCommand}}</td>
+                <td style='border: solid 1px black;text-align: center;'>{{goldstar}}</td>
+                <td style='border: solid 1px black;text-align: center;'>{{punched}}</td>
+                <td style='border: solid 1px black;text-align: center;'>{{question_total}}</td>
+                <td style='border: solid 1px black;text-align: center;'>{{dracoCountCall}}</td>
+                <td style='border: solid 1px black;text-align: center;'>{{fishTime}}</td>
+                <td style='border: solid 1px black;text-align: center;'>{{fishing}}</td>
+                <td style='border: solid 1px black;text-align: center;'>
+                    {{#each fishes}}
+                        {{this}}
+                    {{/each}}
+                </td>
+                <td style='border: solid 1px black;text-align: center;'>
+                    {{fishes.length}}
+                </td>
+            {{/unless}}
         </tr>
         {{/each}}
         </tbody>

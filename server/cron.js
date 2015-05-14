@@ -49,12 +49,13 @@ if (Meteor.isServer) {
       return parser.text('every weekday at 8:50pm');
     },
     job: function() {
-      image = 'http://dracobot.meteor.com/images/goodbye.jpg';
-      bot_talk(image, 'G045PRA4A');
+      console.log("GoodBye");
+      // image = 'http://dracobot.meteor.com/images/goodbye.jpg';
+      // bot_talk(image, 'G045PRA4A');
 
-      var base_url = 'http://dracobot.meteor.com/sounds/';
-      var url = base_url + 'home.mp3';
-      Meteor.call('pushSound', 'draco', url, 'en', false);
+      // var base_url = 'http://dracobot.meteor.com/sounds/';
+      // var url = base_url + 'home.mp3';
+      // Meteor.call('pushSound', 'draco', url, 'en', false);
     }
   });
 
@@ -98,20 +99,36 @@ if (Meteor.isServer) {
       return parser.recur().every().hour().between(13,20).onWeekday();
     },
     job: function() {
-        Meteor.call('pushSound', 'draco', "dong", 'en_uk', true);
+      var current_hour = moment(SyncedCron.nextScheduledAtDate("hour clock")).format('h') - 1;
+
+      console.log("clean -> ", current_hour);
+
+      if (current_hour == '0'){
+        current_hour = 12;
+      }
+
+      console.log("Modded -> ", current_hour);
+
+      var message = 'dong.';
+      // for (var i=0;i<current_hour+1;i++){
+      //   message += ' dong.'
+      // }
+
+      Meteor.call('pushSound', 'draco', message, 'en_uk', true);
     }
   });
 
   SyncedCron.add({
     name: 'Train Call',
     schedule: function(parser) {
-      return parser.text('every weekday at 5:50pm');
+      return parser.text('every weekday at 6:50pm');
     },
     job: function() {
       var message = 'The Sweet Tarts train will be departing in 10 mins!';
       Meteor.call('pushSound', 'draco', message, 'en_uk', true);
     }
   });
+
 
   SyncedCron.add({
     name: 'Brown-Bag Time',
