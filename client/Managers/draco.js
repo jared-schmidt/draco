@@ -227,7 +227,7 @@ if (Meteor.isClient) {
                       console.log('Finished in ' + event.elapsedTime + ' seconds.');
                     };
 
-                    speechSynthesis.speak(msg);
+                    // speechSynthesis.speak(msg);
 
                     // DracoTalk.voice = voices[index];
                     // console.log("voice ", voices[index]);
@@ -245,12 +245,12 @@ if (Meteor.isClient) {
 
                     // console.log("Message -> ", sound.url);
                     // console.log('DracoTalk ', DracoTalk);
-                    // // speechUtteranceChunker(DracoTalk, {
-                    // //     chunkLength: 120
-                    // // }, function () {
-                    // //     //some code to execute when done
-                    // //     console.log('done');
-                    // // });
+                    speechUtteranceChunker(msg, {
+                        chunkLength: 120
+                    }, function () {
+                        //some code to execute when done
+                        console.log('done');
+                    });
                     // window.speechSynthesis.speak(DracoTalk);
                   }
 
