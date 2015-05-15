@@ -4,7 +4,7 @@ talk = {
         var lang = 'en_gb';
         var charLimit = 100;
 
-        var person = People.findOne({'id': slack['slack_id']});
+        var person = People.findOne({'id': slack.slack_id});
 
         console.log(person);
 
@@ -12,12 +12,12 @@ talk = {
             lang = person.defaultTalk;
         }
 
-        if (slack['text'].indexOf('|') > 0){
-            var txtObj = slack['text'].split('|')
+        if (slack.text.indexOf('|') > 0){
+            var txtObj = slack.text.split('|');
             text = txtObj[0];
             lang = txtObj[1];
         } else {
-            text = slack['text'];
+            text = slack.text;
         }
 
         var stringToLong = text.length >= charLimit;
@@ -32,11 +32,21 @@ talk = {
                 // message = 'Auto cropped that message for you!';
                 // message = "NO MORE CROP";
             // } else {
-                message = 'Sent sound #' + PastSounds.find({}).count() + ' character(s) of text ' + text.length;
+                var tags = '';
+                try {
+                  var nlp = Meteor.npmRequire('nlp_compromise');
+                  var s = nlp.pos(text).sentences[0];
+                  tags = s.tags();
+                  console.log(tags);
+                } catch (e) {
+                    console.log("NLP error");
+                }
+
+
+                message = 'Sent sound #' + PastSounds.find({}).count() + ' character(s) of text ' + text.length + " Tags: " + tags;
             // }
 
-
-            Meteor.call('pushSound', slack['slack_name'], text, lang, true);
+            Meteor.call('pushSound', slack.slack_name, text, lang, true);
 
         }
         // } else if (text && stringToLong){

@@ -3,13 +3,13 @@ sound = {
         var text = slack['text'];
 
         if (text.length > 0){
-            message = "failed to work..."
+            message = "failed to work...";
             var command = String(text.split(' ')[0]);
             command = command.replace(',', '');
             command = command.trim();
             command = command.toLowerCase();
             var url = null;
-            var base_url = 'http://dracobot2.meteor.com/sounds/';
+            var base_url = 'http://dracobot.meteor.com/sounds/';
             if (command){
                 text = text.replace(command, '');
                 text = text.trim();
@@ -199,6 +199,10 @@ sound = {
                     case 'fedup':
                         url = base_url + 'fedup.mp3';
                         message = 'That sucks';
+                        break;
+                    case 'chewbacca':
+                        url = base_url + 'chewbacca.mp3';
+                        message = "It's a trap!";
                         break;
                     default:
                         message = "Is that a sound? Check here https://github.com/jared-schmidt/draco/wiki/Sounds";
