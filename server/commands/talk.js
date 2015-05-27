@@ -3,6 +3,8 @@ talk = {
         var text = '';
         var lang = 'en_gb';
         var charLimit = 100;
+        var pitch = 0;
+        var rate = 1;
 
         var person = People.findOne({'id': slack.slack_id});
 
@@ -16,6 +18,8 @@ talk = {
             var txtObj = slack.text.split('|');
             text = txtObj[0];
             lang = txtObj[1];
+            pitch = txtObj[2];
+            rate = txtObj[3];
         } else {
             text = slack.text;
         }
@@ -46,7 +50,7 @@ talk = {
                 message = 'Sent sound #' + PastSounds.find({}).count() + ' character(s) of text ' + text.length + " Tags: " + tags;
             // }
 
-            Meteor.call('pushSound', slack.slack_name, text, lang, true);
+            Meteor.call('pushSound', slack.slack_name, text, lang, true, pitch, rate);
 
         }
         // } else if (text && stringToLong){

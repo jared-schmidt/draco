@@ -31,4 +31,5 @@ kestanous:herald-web-notifications
 
 yogiben:tts
 mrt:twit
-wenape:soundmanager
+#wenape:soundmanager
+hiukim:slack-client

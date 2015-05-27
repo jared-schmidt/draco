@@ -210,16 +210,15 @@ if (Meteor.isClient) {
                     if (sound.lang >= 0 && sound.lang < voices.length-1)
                     index = sound.lang;
                   }
-
-                  console.log(index);
+                  console.log(sound.text);
                   if (voices){
                     var msg = new SpeechSynthesisUtterance();
                     var voices = window.speechSynthesis.getVoices();
                     msg.voice = voices[index]; // Note: some voices don't support altering params
                     msg.voiceURI = 'native';
                     msg.volume = 1; // 0 to 1
-                    msg.rate = 1; // 0.1 to 10
-                    msg.pitch = 2; //0 to 2
+                    msg.rate = sound.rate; // 0.1 to 10
+                    msg.pitch = sound.pitch; //0 to 2
                     msg.text = sound.url;
                     msg.lang = voices[index].lang;
 

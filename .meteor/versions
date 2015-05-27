@@ -17,6 +17,7 @@ ejson@1.0.6
 email@1.0.6
 fastclick@1.0.3
 geojson-utils@1.0.3
+hiukim:slack-client@1.0.4
 houston:admin@2.0.3
 html-tools@1.0.4
 htmljs@1.0.4
@@ -89,5 +90,4 @@ underscore@1.0.3
 url@1.0.4
 webapp@1.2.0
 webapp-hashing@1.0.3
-wenape:soundmanager@0.1.0
 yogiben:tts@0.0.0

@@ -18,6 +18,60 @@ if (Meteor.isServer) {
     });
   });
 
+  // var authUrl = 'https://slack.com/api/rtm.start';
+  // var authToken = Meteor.settings['slack_api_token'];
+  // var autoReconnect = true;
+  // var autoMark = false;
+  // var slack = new Slack(authToken, autoReconnect, autoMark);
+  // var nlp = Meteor.npmRequire('nlp_compromise');
+
+  // slack.on('open', function() {
+  //   console.log("opened");
+
+  //   var channels = [];
+
+  //   for (var key in slack.channels) {
+  //      if (slack.channels.hasOwnProperty(key)) {
+  //          var obj = slack.channels[key];
+  //          if (obj.is_member){
+  //           channels.push(obj);
+  //          }
+  //       }
+  //   }
+
+  //   channels.forEach(function(channel){
+  //     console.log(channel.unread_count + " == " + )
+  //     if (channel.unread_count > 0){
+  //       console.log(channel.name);
+  //     }
+  //   });
+
+
+    // slack.channels.forEach(function(channel){
+    //   console.log(channel.is_member);
+    // });
+
+    // var groups = (group.name for id, group of slack.groups when group.is_open and not group.is_archived)
+
+    // console.log "Welcome to Slack. You are @#{slack.self.name} of #{slack.team.name}"
+    // console.log 'You are in: ' + channels.join(', ')
+    // console.log 'As well as: ' + groups.join(', ')
+
+    // var unreads = slack.getUnreadCount();
+    // console.log(unreads);
+
+
+  // });
+
+  // slack.on('message', function(message) {
+    // if (message.user == 'U0310MDB8')
+    // var unreads = slack.getUnreadCount();
+    // console.log(unreads);
+    // console.log('received message: ', message.text);
+    // console.log(nlp.pos(message.text).tags());
+  // });
+
+  // slack.login()
 
   Meteor.methods({
     keepalive: function (user_id) {
@@ -155,33 +209,37 @@ if (Meteor.isServer) {
                 DesktopNotifications.remove({}); //remove all again so we don't get pop ups when first loading
             }));
     },
-    pushSound:function(name, soundUrl, lang, speech){
-      
+    pushSound:function(name, soundUrl, lang, speech, pitch, rate){
+
       Sounds.insert({
         'calledby': name,
         'url':soundUrl,
         'speech': speech,
         'lang': lang,
         'played': false,
-        'playing': false
+        'playing': false,
+        'pitch': pitch,
+        'rate': rate
       });
-      
+
       PastSounds.insert({
         'calledby': name,
         'sound': soundUrl,
         'speech': speech,
         'lang': lang,
-        'played': false
+        'played': false,
+        'pitch': pitch,
+        'rate': rate
       });
-      
+
     },
     playedSound:function(soundID, client_id){
       console.log("Sounds ID -> ", soundID);
       console.log('Played on -> ', client_id);
-      
+
       Sounds.update({'_id':soundID}, {$set:{'played':true, 'playing': false}, $addToSet:{'clients': client_id}});
       PastSounds.update({'_id':soundID}, {$set:{'played':true}, $addToSet:{'clients': client_id}});
-      
+
       Sounds.remove({'_id': soundID});
     },
     isPlaying: function(){
