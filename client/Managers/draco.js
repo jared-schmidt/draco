@@ -56,8 +56,8 @@ if (Meteor.isClient) {
 
   var speechUtteranceChunker = function (utt, settings, callback) {
       settings = settings || {};
-      console.log("utt ",utt);
-      console.log("settings ", settings)
+      // console.log("utt ",utt);
+      // console.log("settings ", settings)
       var newUtt;
       var txt = (settings && settings.offset !== undefined ? utt.text.substring(settings.offset) : utt.text);
       if (utt.voice && utt.voice.voiceURI === 'native') { // Not part of the spec
@@ -113,8 +113,12 @@ if (Meteor.isClient) {
       newUtt.volume = utt.volume;
       newUtt.rate = utt.rate;
       newUtt.pitch = utt.pitch;
+      newUtt.onend = utt.onend;
 
-      console.log(newUtt); //IMPORTANT!! Do not remove: Logging the object out fixes some onend firing issues.
+      newUtt.onerror = utt.onerror;
+      newUtt.onstart = utt.onstart;
+
+      // console.log(newUtt); //IMPORTANT!! Do not remove: Logging the object out fixes some onend firing issues.
       //placing the speak invocation inside a callback fixes ordering and onend issues.
       setTimeout(function () {
           speechSynthesis.speak(newUtt);
@@ -144,42 +148,6 @@ if (Meteor.isClient) {
               }
           });
 
-          // MediaStreamTrack.getSources(function(sourceInfos) {
-          //   var audioSource = null;
-
-          //   for (var i = 0; i != sourceInfos.length; ++i) {
-          //     var sourceInfo = sourceInfos[3];
-          //     if (sourceInfo.kind === 'audio') {
-          //       console.log(sourceInfo.id, sourceInfo.label || 'microphone');
-          //       console.log(sourceInfo);
-          //       audioSource = sourceInfo.id;
-          //     } else {
-          //       console.log('Some other kind of source: ', sourceInfo);
-          //     }
-          //   }
-          //   console.log(audioSource);
-          //   sourceSelected(audioSource);
-          // });
-
-          // function sourceSelected(audioSource) {
-          //   var constraints = {
-          //     audio: {
-          //       optional: [{sourceId: audioSource}]
-          //     }
-          //   };
-
-          //   navigator.webkitGetUserMedia(constraints, successCallback, errorCallback);
-          // }
-
-          // successCallback = function(stream){
-          //   var microphone = context.createMediaStreamSource(stream);
-          //   console.log(stream);
-          //   microphone.connect(filter);
-          // };
-
-          // errorCallback = function(err){
-          //   console.log(err);
-          // };
 
           Sounds.find({}).observe({
             added:function(sound){
@@ -206,11 +174,13 @@ if (Meteor.isClient) {
                   var voices = window.speechSynthesis.getVoices();
                   var index = 1;
                   if (!isNaN(sound.lang)){
-                    console.log("len -> ", voices.length-1);
+                    // console.log("len -> ", voices.length-1);
                     if (sound.lang >= 0 && sound.lang < voices.length-1)
                     index = sound.lang;
                   }
-                  console.log(sound.text);
+
+                  console.log("Sound URL/Text -> ", sound.url);
+
                   if (voices){
                     var msg = new SpeechSynthesisUtterance();
                     var voices = window.speechSynthesis.getVoices();
@@ -226,24 +196,15 @@ if (Meteor.isClient) {
                       console.log('Finished in ' + event.elapsedTime + ' seconds.');
                     };
 
-                    // speechSynthesis.speak(msg);
+                    msg.onerror = function(e){
+                      console.log("Error in sound");
+                      speechSynthesis.cancel();
+                    }
 
-                    // DracoTalk.voice = voices[index];
-                    // console.log("voice ", voices[index]);
-                    // DracoTalk.voiceURI = 'native';//voices[index].voiceURI;
-                    // DracoTalk.lang = 'en-US'//voices[index].lang;
-                    // DracoTalk.volume = 1;
-                    // DracoTalk.rate = 5;
-                    // DracoTalk.pitch = 2;
+                    msg.onstart = function(e){
+                      console.log("Start Talk");
+                    }
 
-                    // DracoTalk.text = sound.url;
-
-                    // DracoTalk.onend = function(e) {
-                    //   console.log('Finished in ' + event.elapsedTime + ' seconds.');
-                    // };
-
-                    // console.log("Message -> ", sound.url);
-                    // console.log('DracoTalk ', DracoTalk);
                     speechUtteranceChunker(msg, {
                         chunkLength: 120
                     }, function () {

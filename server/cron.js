@@ -85,10 +85,10 @@ if (Meteor.isServer) {
         var weatherString = 'It is currently ' + currentTemp + ' degrees in ' + townName + ' with ' + currentWeatherType;
 
         var message = 'Good Morning, Problem Solutions! ' + weatherString;
-        Meteor.call('pushSound', 'draco', message, 'en_uk', true);
+        Meteor.call('pushSound', 'draco', message, 'en_uk', true, 0, 1);
       } else  {
         var message = "No weather found for today.... Good bye."
-        Meteor.call('pushSound', 'draco', message, 'en_uk', true);
+        Meteor.call('pushSound', 'draco', message, 'en_uk', true, 0, 1);
       }
     }
   });
