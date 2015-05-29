@@ -215,13 +215,18 @@
         "welcome": {
             "active": true,
             "hidden": false,
-            "what": "Welcome a new people to meet draco!",
+            "what": "Welcome a new people to meet draco",
             "extra": "username"
         },
         "xkcd": {
             "active": true,
             "hidden": false,
             "what": "Gets the currect xkcd comic"
+        },
+        "readnumfact": {
+          "active": true,
+          "hidden": false,
+          "what": "Reads a random number fact though draco"
         }
     }
 }
