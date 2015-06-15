@@ -1,5 +1,8 @@
 if (Meteor.isServer) {
 
+  var clock = moment.tz(SyncedCron.nextScheduledAtDate("hour clock"), "America/New_York").format('h');
+  console.log("Clock -> " + clock);
+
   Connections = new Meteor.Collection('connections');
 
   Meteor.startup(function () {

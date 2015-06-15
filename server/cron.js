@@ -87,7 +87,7 @@ if (Meteor.isServer) {
         var message = 'Good Morning, Problem Solutions! ' + weatherString;
         Meteor.call('pushSound', 'draco', message, 'en_uk', true, 0, 1);
       } else  {
-        var message = "No weather found for today.... Good bye."
+        var message = "No weather found for today.... Good bye.";
         Meteor.call('pushSound', 'draco', message, 'en_uk', true, 0, 1);
       }
     }
@@ -99,35 +99,48 @@ if (Meteor.isServer) {
       return parser.recur().every().hour().between(13,20).onWeekday();
     },
     job: function() {
-      var current_hour = moment(SyncedCron.nextScheduledAtDate("hour clock")).format('h') - 1;
+      var current_hour = moment.tz(SyncedCron.nextScheduledAtDate("hour clock"), "America/New_York").format('h');
 
       console.log("clean -> ", current_hour);
 
-      if (current_hour == '0'){
-        current_hour = 12;
-      }
+      // if (current_hour == '0'){
+      //   current_hour = 12;
+      // }
 
-      console.log("Modded -> ", current_hour);
+      // console.log("Modded -> ", current_hour);
 
-      var message = 'dong.';
+      var message = "It is " + current_hour + " o'clock";
       // for (var i=0;i<current_hour+1;i++){
       //   message += ' dong.'
       // }
 
-      Meteor.call('pushSound', 'draco', message, 'en_uk', true);
+      Meteor.call('pushSound', 'draco', message, 'en_uk', true, 0, 1);
     }
   });
 
   SyncedCron.add({
-    name: 'Train Call',
+    name: 'morning-Meeting',
     schedule: function(parser) {
-      return parser.text('every weekday at 6:50pm');
+      return parser.text('at 2:25pm on Monday');
     },
     job: function() {
-      var message = 'The Sweet Tarts train will be departing in 10 mins!';
-      Meteor.call('pushSound', 'draco', message, 'en_uk', true);
+
+      var message = "Alert! Alert! It is is time for the weekly staff meeting! Report to your battle stations!";
+
+      Meteor.call('pushSound', 'draco', message, 'en_uk', true, 0, 1);
     }
   });
+
+  // SyncedCron.add({
+  //   name: 'Train Call',
+  //   schedule: function(parser) {
+  //     return parser.text('every weekday at 6:50pm');
+  //   },
+  //   job: function() {
+  //     var message = 'The Sweet Tarts train will be departing in 10 mins!';
+  //     Meteor.call('pushSound', 'draco', message, 'en_uk', true);
+  //   }
+  // });
 
 
   SyncedCron.add({
@@ -137,7 +150,7 @@ if (Meteor.isServer) {
     },
     job: function() {
       bot_talk('@group: Vote http://brown-bag.meteor.com/', 'G045PRA4A');
-      Meteor.call('pushSound', 'draco', 'Time to vote on the brown-bag site.', 'en', true);
+      Meteor.call('pushSound', 'draco', 'Time to vote on the brown-bag site.', 'en', true, 0, 1);
     }
   });
 
@@ -149,7 +162,7 @@ if (Meteor.isServer) {
     },
     job: function() {
       bot_talk('@group: Remember to submit your time. https://problemsolutions.tsheets.com/', 'G045PRA4A');
-      Meteor.call('pushSound', 'draco', 'Remember to submit your time', 'en', true);
+      Meteor.call('pushSound', 'draco', 'Remember to submit your time', 'en', true, 0, 1);
     }
   });
 
@@ -163,13 +176,13 @@ if (Meteor.isServer) {
               .and()
                 .on(13).dayOfMonth().on(6).dayOfWeek().on(hour).hour()
               .and()
-                .on(14).dayOfMonth().on(2).dayOfWeek().on(hour).hour()
+                .on(14).dayOfMonth().on(2).dayOfWeek().on(hour).hour();
 
       return th_scheduler;
     },
     job: function() {
       bot_talk('@group: Remember to submit your time. https://problemsolutions.tsheets.com/', 'G045PRA4A');
-      Meteor.call('pushSound', 'draco', 'Remember to submit your time', 'en', true);
+      Meteor.call('pushSound', 'draco', 'Remember to submit your time', 'en', true, 0, 1);
     }
   });
 

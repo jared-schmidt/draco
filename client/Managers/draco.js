@@ -183,7 +183,6 @@ if (Meteor.isClient) {
 
                   if (voices){
                     var msg = new SpeechSynthesisUtterance();
-                    var voices = window.speechSynthesis.getVoices();
                     msg.voice = voices[index]; // Note: some voices don't support altering params
                     msg.voiceURI = 'native';
                     msg.volume = 1; // 0 to 1
@@ -194,22 +193,24 @@ if (Meteor.isClient) {
 
                     msg.onend = function(e) {
                       console.log('Finished in ' + event.elapsedTime + ' seconds.');
+                      speechSynthesis.cancel()
                     };
 
                     msg.onerror = function(e){
                       console.log("Error in sound");
                       speechSynthesis.cancel();
-                    }
+                    };
 
                     msg.onstart = function(e){
                       console.log("Start Talk");
-                    }
+                    };
 
                     speechUtteranceChunker(msg, {
                         chunkLength: 120
                     }, function () {
                         //some code to execute when done
                         console.log('done');
+                        speechSynthesis.cancel();
                     });
                     // window.speechSynthesis.speak(DracoTalk);
                   }
@@ -222,9 +223,11 @@ if (Meteor.isClient) {
             },
             remove: function(oldSound){
               console.log("Removed Sound from collection");
+              speechSynthesis.cancel();
             },
             changed: function(){
               console.log("Sound Collection changed");
+              speechSynthesis.cancel();
             }
           });
       });
