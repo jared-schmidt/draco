@@ -204,6 +204,14 @@ sound = {
                         url = base_url + 'chewbacca.mp3';
                         message = "It's a trap!";
                         break;
+                    case 'bs':
+                        url = base_url + 'bs.mp3';
+                        message = "Agreed!";
+                        break;
+                    case 'sheep':
+                        url = base_url + 'sheep.mp3';
+                        message = "Baaaaaa!";
+                        break;
                     default:
                         message = "Is that a sound? Check here https://github.com/jared-schmidt/draco/wiki/Sounds";
                         break;
