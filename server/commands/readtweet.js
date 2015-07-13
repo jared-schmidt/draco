@@ -29,7 +29,7 @@ readtweet = {
               text = text.replace(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/ig,"");
 
               console.log("sending tweet");
-              Meteor.call('pushSound', slack.slack_name + " Twitter", text.replace('#', ''), lang, true);
+              Meteor.call('pushSound', slack.slack_name + " Twitter", text.replace('#', ''), lang, true, 0, 1);
           }
           else {
             console.error("DID NOT WORK");

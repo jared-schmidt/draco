@@ -195,10 +195,10 @@
             "extra": "sound"
         },
         "talk":{
-            "active": true,
+            "active": false,
             "hidden": false,
             "what": "Text-to-Speech for given language (default is english) [kinda]",
-            "extra": "text|lang"
+            "extra": "text|lang|pitch|rate"
         },
         "weather":{
             "active": true,
@@ -207,7 +207,7 @@
             "extra": "zipCode"
         },
         "readtweet":{
-            "active": true,
+            "active": false,
             "hidden": false,
             "what": "Reads a tweet for a given hashtag",
             "extra": "hashtag"
@@ -224,7 +224,7 @@
             "what": "Gets the currect xkcd comic"
         },
         "readnumfact": {
-          "active": true,
+          "active": false,
           "hidden": false,
           "what": "Reads a random number fact though draco"
         }

@@ -125,8 +125,8 @@ if (Meteor.isServer) {
     },
     job: function() {
 
-      var message = "Alert! Alert! It is is time for the weekly staff meeting! Report to your battle stations!";
-
+      var message = "*_Alert! Alert!_* It is is time for the weekly staff meeting! Report to your battle stations!";
+      bot_talk('@group: ' + message, 'G045PRA4A');
       Meteor.call('pushSound', 'draco', message, 'en_uk', true, 0, 1);
     }
   });

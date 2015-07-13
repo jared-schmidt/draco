@@ -212,6 +212,14 @@ sound = {
                         url = base_url + 'sheep.mp3';
                         message = "Baaaaaa!";
                         break;
+                    case 'bubbles':
+                        url = base_url + 'bubbles.wav';
+                        message = "BUBBLES!";
+                        break;
+                    case 'glub':
+                        url = base_url + 'glub.wav';
+                        message = "Gulb Gulb Gulb";
+                        break;
                     default:
                         message = "Is that a sound? Check here https://github.com/jared-schmidt/draco/wiki/Sounds";
                         break;
