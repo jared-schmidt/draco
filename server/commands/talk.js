@@ -8,7 +8,7 @@ talk = {
 
         var person = People.findOne({'id': slack.slack_id});
 
-        console.log(person);
+        // console.log(person);
 
         if (person.defaultTalk){
             lang = person.defaultTalk;
@@ -39,11 +39,24 @@ talk = {
                 var tags = '';
                 try {
                   var nlp = Meteor.npmRequire('nlp_compromise');
+                  var words = Meteor.npmRequire('offensivewords');
+
                   var s = nlp.pos(text).sentences[0];
                   tags = s.tags();
                   console.log(tags);
                 } catch (e) {
                     console.log("NLP error");
+                }
+
+                var matches = words(text);
+                var offensive = false;
+                _.each(matches, function(match){
+                    text = text.replace(match, 'beep');
+                    offensive = true;
+                });
+
+                if (offensive){
+                    text += ". I saved your butt " + slack.slack_name + " watch it next time!";
                 }
 
 

@@ -220,6 +220,10 @@ sound = {
                         url = base_url + 'glub.wav';
                         message = "Gulb Gulb Gulb";
                         break;
+                    case 'horse':
+                        url = base_url + 'horse.mp3';
+                        message = "Hell Yeah, it is!";
+                        break;
                     default:
                         message = "Is that a sound? Check here https://github.com/jared-schmidt/draco/wiki/Sounds";
                         break;
@@ -229,12 +233,12 @@ sound = {
             if(url){
                 Meteor.call('pushSound', slack['slack_name'], url, 'en', false);
             } else {
-                message = "Lost the sound somewhere?";
+                message = "Lost the sound somewhere? Check here https://github.com/jared-schmidt/draco/wiki/Sounds";
             }
 
 
         } else {
-            message = 'Select a sound to play';
+            message = 'Select a sound to play. Check here https://github.com/jared-schmidt/draco/wiki/Sounds';
         }
         return message;
     }

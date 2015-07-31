@@ -195,7 +195,7 @@
             "extra": "sound"
         },
         "talk":{
-            "active": false,
+            "active": true,
             "hidden": false,
             "what": "Text-to-Speech for given language (default is english) [kinda]",
             "extra": "text|lang|pitch|rate"

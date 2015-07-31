@@ -86,6 +86,9 @@
     "nlp_compromise": {
       "version": "0.3.9"
     },
+    "offensivewords": {
+      "version": "0.0.1"
+    },
     "ws": {
       "version": "0.7.1",
       "dependencies": {
