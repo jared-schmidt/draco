@@ -93,6 +93,31 @@ if (Meteor.isServer) {
     }
   });
 
+
+  SyncedCron.add({
+    name: 'xkcd',
+    schedule: function(parser) {
+      return parser.text('at 1:00pm on Mon, Weds and Fri');
+    },
+    job: function() {
+        var url = 'http://xkcd.com/info.0.json';
+        var j_data = get_call(url);
+        try{
+            bot_talk('xkcd #'+j_data.num+': ' + j_data.title, 'G045PRA4A');
+            bot_talk(j_data.img, 'G045PRA4A');
+            if (j_data.alt){
+                bot_talk(j_data.alt, 'G045PRA4A');
+            }
+            if (j_data.news){
+                bot_talk(j_data.news, 'G045PRA4A');
+            }
+        }catch(err){
+            message = 'failed to find comic.';
+        }
+        return message;
+    }
+  });
+
   SyncedCron.add({
     name: 'hour clock',
     schedule: function(parser) {
