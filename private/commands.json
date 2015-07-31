@@ -227,6 +227,11 @@
           "active": false,
           "hidden": false,
           "what": "Reads a random number fact though draco"
-        }
+      },
+      "youtube": {
+          "active": true,
+          "hidden": false,
+          "what": "Plays youtube videos"
+      }
     }
 }

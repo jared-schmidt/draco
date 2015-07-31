@@ -84,6 +84,7 @@ person_bot = function (message, channel, name, icon_url){
         "channel":channel,
         "text": message,
         "username": name,
+        "as_user": true,
         "icon_url": icon_url
     }
     var result = HTTP.call("GET", url, {params: payload});
