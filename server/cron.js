@@ -146,13 +146,13 @@ if (Meteor.isServer) {
   SyncedCron.add({
     name: 'morning-Meeting',
     schedule: function(parser) {
-      return parser.text('at 2:25pm on Monday');
+      return parser.text('at 2:28pm on Monday');
     },
     job: function() {
 
       var message = "*_Alert! Alert!_* It is is time for the weekly staff meeting! Report to your battle stations!";
       bot_talk('@group: ' + message, 'G045PRA4A');
-      Meteor.call('pushSound', 'draco', message, 'en_uk', true, 0, 1);
+      Meteor.call('pushSound', 'draco', "Alert! Alert! It is is time for the weekly staff meeting! Report to your battle stations!", 'en_uk', true, 0, 1);
     }
   });
 

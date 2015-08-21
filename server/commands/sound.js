@@ -224,6 +224,10 @@ sound = {
                         url = base_url + 'horse.mp3';
                         message = "Hell Yeah, it is!";
                         break;
+                    case 'babyback':
+                        url = base_url + 'babyback.mp3';
+                        message = "That is one big robot";
+                        break;
                     default:
                         message = "Is that a sound? Check here https://github.com/jared-schmidt/draco/wiki/Sounds";
                         break;

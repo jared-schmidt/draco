@@ -40,6 +40,8 @@ talk = {
                 try {
                   var nlp = Meteor.npmRequire('nlp_compromise');
                   var words = Meteor.npmRequire('offensivewords');
+                  var Filter = Meteor.npmRequire('bad-words');
+                  var customFilter = new Filter({ placeHolder: 'beep'});
 
                   var s = nlp.pos(text).sentences[0];
                   tags = s.tags();
@@ -63,7 +65,7 @@ talk = {
                 message = 'Sent sound #' + PastSounds.find({}).count() + ' character(s) of text ' + text.length + " Tags: " + tags;
             // }
 
-            Meteor.call('pushSound', slack.slack_name, text, lang, true, pitch, rate);
+            Meteor.call('pushSound', slack.slack_name, customFilter.clean(text), lang, true, pitch, rate);
 
         }
         // } else if (text && stringToLong){
