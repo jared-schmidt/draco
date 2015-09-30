@@ -17,36 +17,44 @@
 
 <template name="home">
 
-    <h1>Draco Bot says welcome!</h1>
-    <div>He will count the number of time you click the 'Click Me' Button!</div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1 style='text-align: center;'>Draco Bot says welcome!</h1>
+            <div class="clock"></div>
+        </div>
+    </div>
+    <!-- <div>He will count the number of time you click the 'Click Me' Button!</div>
     <button id='count'>Click Me</button>
     <p>You've pressed the button {{counter}} times.</p>
-    <br />
+    <br /> -->
+
+
+    {{>simpleWeather}}
 
     <!-- <button id='yourButton'>Record Sound</button> -->
-    <br />
-    <p>To change draco voice => "/draco talk {text}|{index}"</p>
-    <br />
-    <button id='getVoices'>Get Voice Table</button>
-    <br />
-    <br />
-    <table id='voiceTable' border="1">
+    <!-- <br /> -->
+    <!-- <p>To change draco voice => "/draco talk {text}|{index}"</p> -->
+    <!-- <br /> -->
+    <!-- <button id='getVoices'>Get Voice Table</button> -->
+    <!-- <br /> -->
+    <!-- <br /> -->
+    <!-- <table id='voiceTable' border="1">
         <thead>
             <th>Index</th>
             <th>Name</th>
             <th>Lang</th>
         </thead>
         <tbody></tbody>
-    </table>
-    <br />
+    </table> -->
+    <!-- <br /> -->
 
-    <div>
+    <!-- <div>
     <label>Current Question:</label>
     {{current_question}}
     </div>
     <br />
-    <br />
-    <table style='border: solid 1px black;text-align: center;'>
+    <br /> -->
+    <!-- <table style='border: solid 1px black;text-align: center;'>
         <thead style='border: solid 1px black;text-align: center;'>
             <th>Name</th>
             <th>Last Command</th>
@@ -89,5 +97,5 @@
         </tr>
         {{/each}}
         </tbody>
-    </table>
+    </table> -->
 </template>

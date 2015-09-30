@@ -1,1 +1,8 @@
 /* CSS declarations go here */
+html, body {
+    background: url(images/back.png) repeat;
+    position: relative;
+    color: #CCCCFF;
+    overflow: hidden;
+    cursor:none
+}

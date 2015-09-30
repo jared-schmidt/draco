@@ -54,6 +54,25 @@ if (Meteor.isClient) {
   }
 
 
+var options = {
+    location: 'Johnstown, PA',
+    unit: 'f',
+    success: function(weather) {
+      html = '<h2><i class="sw icon-'+weather.code+'"></i> '
+      html += weather.temp+'&deg;'+weather.units.temp+'</h2>';
+      html += '<ul><li>'+weather.city+', '+weather.region +'</li>';
+      html += '<li class="currently">'+weather.currently+'</li>';
+
+      $("#weather").html(html);
+    },
+    error: function(error) {
+      $("#weather").html('<p>'+error+'</p>');
+    }
+  }
+
+  Weather.options = options
+
+
   var speechUtteranceChunker = function (utt, settings, callback) {
       settings = settings || {};
       // console.log("utt ",utt);
@@ -253,6 +272,11 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.home.rendered = function(){
+    $('.clock').FlipClock({
+        clockFace: 'TwelveHourClock'
+    });
+  };
 
 
   Template.home.events({
