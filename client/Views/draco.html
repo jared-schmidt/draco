@@ -20,16 +20,38 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h1 style='text-align: center;'>Draco Bot says welcome!</h1>
+        </div>
+        <div class="col-md-6">
             <div class="clock"></div>
         </div>
+        <div class="col-md-6">
+            {{>simpleWeather}}
+        </div>
+        <div class="col-md-6">
+            <a id="onlineRadioLink" href="http://radiotuna.com/">internet radio</a>
+            <script type="text/javascript" src="http://radiotuna.com/OnlineRadioPlayer/EmbedRadio?playerParams=%7b%22styleSelection0%22%3a0%2c%22styleSelection1%22%3a0%2c%22styleSelection2%22%3a0%2c%22textColor%22%3a0%2c%22backgroundColor%22%3a15592941%2c%22buttonColor%22%3a16744626%2c%22glowColor%22%3a16744626%2c%22playerSize%22%3a240%2c%22userGuid%22%3a%2252acad9d-7003-44af-aef7-7019b355d9f0%22%2c%22streamId%22%3a60121%2c%22playerTitleText%22%3a%22Draco%22%2c%22playerType%22%3a%22singleStation%22%7d&width=240&height=214&autoplay=true"></script>
+
+            <div>
+                Talk: <span id='talk'></span>
+            </div>
+            <div>
+                Sound: <span id='sound'></span>
+            </div>
+        </div>
     </div>
+
+    <!-- <div class="col-md-6">
+        <iframe src='' id='youtube' ></iframe>
+    </div> -->
+
+
     <!-- <div>He will count the number of time you click the 'Click Me' Button!</div>
     <button id='count'>Click Me</button>
     <p>You've pressed the button {{counter}} times.</p>
     <br /> -->
 
 
-    {{>simpleWeather}}
+
 
     <!-- <button id='yourButton'>Record Sound</button> -->
     <!-- <br /> -->

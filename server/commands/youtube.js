@@ -3,7 +3,7 @@ youtube = {
         var person = People.findOne({'id': slack['slack_id']});
         console.log("Adding -> " + slack['text']);
         // TODO: Add check for URL
-        if(!slack['text']){
+        if(slack['text']){
             console.log("Adding video");
             message =  "Adding video";
             var youtubeObj = {

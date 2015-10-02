@@ -6,3 +6,21 @@ html, body {
     overflow: hidden;
     cursor:none
 }
+
+.sw {
+    color: #CCCCFF !important;
+}
+
+#weather {
+    background: transparent;
+    color: #CCCCFF !important;
+}
+
+#weather h2 {
+    color: #CCCCFF !important;
+}
+
+#weather li {
+    background: transparent;
+
+}

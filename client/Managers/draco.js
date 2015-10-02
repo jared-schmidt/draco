@@ -167,6 +167,12 @@ var options = {
               }
           });
 
+          YoutubeVideos.find({}).observe({
+              added: function(video){
+                  var url = video.url.replace("watch?v=", "v/");
+                  $("#youtube").attr('src', url);
+              }
+          });
 
           Sounds.find({}).observe({
             added:function(sound){
@@ -176,7 +182,9 @@ var options = {
                   var soundHowl = new Howl({
                     urls:[sound.url],
                     onload: function(){
+                        $('#sound').text(sound.url);
                       console.log("Sound Loaded");
+                      Raptorize();
                     },
                     onloaderror: function(err){
                       console.log("Load error");
@@ -201,6 +209,7 @@ var options = {
                   console.log("Sound URL/Text -> ", sound.url);
 
                   if (voices){
+                    $('#talk').text(sound.url);
                     var msg = new SpeechSynthesisUtterance();
                     msg.voice = voices[index]; // Note: some voices don't support altering params
                     msg.voiceURI = 'native';
