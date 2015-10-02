@@ -81,6 +81,7 @@ modweb:flipclock@0.0.1
 mongo@1.1.2
 mongo-id@1.0.1
 mongo-livedata@1.0.9
+mquandalle:bower@1.5.2
 mrt:moment@2.8.1
 mrt:moment-timezone@0.2.1
 mrt:twit@0.2.0

@@ -43,16 +43,19 @@ if (Meteor.isClient) {
   //   annyang.start();
   // }
 
-
+Template.home.rendered = function(){
   var DracoTalk = null;
-  if ('speechSynthesis' in window) {
-   // Synthesis support. Make your web apps talk!
-   console.log("Synthesis support.");
-   DracoTalk = new SpeechSynthesisUtterance();
-  } else {
-    console.error("No Synthesis support.");
-  }
+  var fallbackSpeechSynthesis = window.getSpeechSynthesis();
+  var fallbackSpeechSynthesisUtterance = window.getSpeechSynthesisUtterance();
 
+  // if ('speechSynthesis' in window) {
+   // Synthesis support. Make your web apps talk!
+   // console.log("Synthesis support.");
+   DracoTalk = new fallbackSpeechSynthesisUtterance();
+  // } else {
+    // console.error("No Synthesis support.");
+  // }
+}
 
 var options = {
     location: 'Johnstown, PA',
@@ -104,7 +107,7 @@ var options = {
               return;
           }
           var chunk = chunkArr[0];
-          newUtt = new SpeechSynthesisUtterance(chunk);
+          newUtt = new fallbackSpeechSynthesisUtterance(chunk);
           var x;
           for (x in utt) {
               if (utt.hasOwnProperty(x) && x !== 'text') {
@@ -140,7 +143,7 @@ var options = {
       // console.log(newUtt); //IMPORTANT!! Do not remove: Logging the object out fixes some onend firing issues.
       //placing the speak invocation inside a callback fixes ordering and onend issues.
       setTimeout(function () {
-          speechSynthesis.speak(newUtt);
+          fallbackSpeechSynthesis.speak(newUtt);
       }, 0);
   };
 
@@ -198,7 +201,7 @@ var options = {
                 } else {
                   // tts.speak(sound.url, sound.lang);
 
-                  var voices = window.speechSynthesis.getVoices();
+                  var voices = window.fallbackSpeechSynthesis.getVoices();
                   var index = 1;
                   if (!isNaN(sound.lang)){
                     // console.log("len -> ", voices.length-1);
@@ -210,7 +213,7 @@ var options = {
 
                   if (voices){
                     $('#talk').text(sound.url);
-                    var msg = new SpeechSynthesisUtterance();
+                    var msg = new fallbackSpeechSynthesisUtterance();
                     msg.voice = voices[index]; // Note: some voices don't support altering params
                     msg.voiceURI = 'native';
                     msg.volume = 1; // 0 to 1
@@ -221,12 +224,12 @@ var options = {
 
                     msg.onend = function(e) {
                       console.log('Finished in ' + event.elapsedTime + ' seconds.');
-                      speechSynthesis.cancel()
+                      fallbackSpeechSynthesis.cancel()
                     };
 
                     msg.onerror = function(e){
                       console.log("Error in sound");
-                      speechSynthesis.cancel();
+                      fallbackSpeechSynthesis.cancel();
                     };
 
                     msg.onstart = function(e){
@@ -238,7 +241,7 @@ var options = {
                     }, function () {
                         //some code to execute when done
                         console.log('done');
-                        speechSynthesis.cancel();
+                        fallbackSpeechSynthesis.cancel();
                     });
                     // window.speechSynthesis.speak(DracoTalk);
                   }
@@ -251,11 +254,11 @@ var options = {
             },
             remove: function(oldSound){
               console.log("Removed Sound from collection");
-              speechSynthesis.cancel();
+              fallbackSpeechSynthesis.cancel();
             },
             changed: function(){
               console.log("Sound Collection changed");
-              speechSynthesis.cancel();
+              fallbackSpeechSynthesis.cancel();
             }
           });
       });
@@ -290,7 +293,7 @@ var options = {
 
   Template.home.events({
     'click #getVoices': function(){
-      var voices = window.speechSynthesis.getVoices();
+      var voices = window.fallbackSpeechSynthesis.getVoices();
       for (var i=0; i<=voices.length;i++){
         var voice = voices[i];
         if (voice){
