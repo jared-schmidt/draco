@@ -68,7 +68,7 @@ dgif = {
                 imgObj = {
                     "addedBy": person['name'],
                     "url": imgUrl,
-                    "text": slack['text'],
+                    "text": "sent from dgif",
                     "addedOn": new Date()
                 }
             }
@@ -76,7 +76,7 @@ dgif = {
               imgObj = {
                 "addedBy": person['name'],
                 "url": '/images/error_FileNotFound.png',
-                "text": slack['text'],
+                "text": "Error",
                 "addedOn": new Date()
               }
             }
