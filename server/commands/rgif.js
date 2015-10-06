@@ -15,6 +15,14 @@ rgif = {
                 outgoing_bot(slack['slack_id'], 'called by: '+ slack['slack_name'] + " Random -> " + url, slack['channel_id']);
                 // message = "Sent. " + (limit - person.gifs).toString() + " Gifs left.";
                 message = "Sent.";
+                var person = People.findOne({'id': slack['slack_id']});
+                var imgObj = {
+                    "addedBy": person['name'],
+                    "url": url,
+                    "text": slack['text'],
+                    "addedOn": new Date()
+                }
+                DashboardImages.insert(imgObj);
             // }else{
                 // message = "Limit reached";
             // }
