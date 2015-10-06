@@ -75,7 +75,7 @@ dgif = {
             else{
               imgObj = {
                 "addedBy": person['name'],
-                "url": 'public/images/error_FileNotFound.png',
+                "url": '/images/error_FileNotFound.png',
                 "text": slack['text'],
                 "addedOn": new Date()
               }
