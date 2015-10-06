@@ -72,6 +72,14 @@ dgif = {
                     "addedOn": new Date()
                 }
             }
+            else{
+              imgObj = {
+                "addedBy": person['name'],
+                "url": 'public/images/error_FileNotFound.png',
+                "text": slack['text'],
+                "addedOn": new Date()
+              }
+            }
                 DashboardImages.insert(imgObj);
                 // outgoing_bot(slack['slack_id'], 'called by: '+ slack['slack_name'] + " Searched: " + slack['text'] +" " + url, slack['channel_id']);
                 // message = "Sent. " + (limit - person.gifs).toString() + " Gifs left.";
