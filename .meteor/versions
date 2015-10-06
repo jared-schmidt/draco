@@ -29,6 +29,7 @@ ecmascript-collections@0.1.6
 ejson@1.0.7
 email@1.0.7
 fastclick@1.0.7
+flipclock@0.0.1
 geojson-utils@1.0.4
 handlebars@1.0.4
 hiukim:slack-client@1.0.4
@@ -77,7 +78,6 @@ minifiers@1.1.7
 minimongo@1.0.10
 mobile-experience@1.0.1
 mobile-status-bar@1.0.6
-modweb:flipclock@0.0.1
 mongo@1.1.2
 mongo-id@1.0.1
 mongo-livedata@1.0.9

@@ -32,7 +32,7 @@ mrt:twit
 #wenape:soundmanager
 hiukim:slack-client
 selaias:meteor-simpleweather
-modweb:flipclock
+flipclock
 twbs:bootstrap
 standard-minifiers
 meteor-base

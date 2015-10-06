@@ -43,19 +43,16 @@ if (Meteor.isClient) {
   //   annyang.start();
   // }
 
-Template.home.rendered = function(){
+// Template.home.rendered = function(){
   var DracoTalk = null;
-  var fallbackSpeechSynthesis = window.getSpeechSynthesis();
-  var fallbackSpeechSynthesisUtterance = window.getSpeechSynthesisUtterance();
-
-  // if ('speechSynthesis' in window) {
+  if ('speechSynthesis' in window) {
    // Synthesis support. Make your web apps talk!
-   // console.log("Synthesis support.");
-   DracoTalk = new fallbackSpeechSynthesisUtterance();
-  // } else {
-    // console.error("No Synthesis support.");
-  // }
-}
+   console.log("Synthesis support.");
+   DracoTalk = new SpeechSynthesisUtterance();
+  } else {
+    console.error("No Synthesis support.");
+  }
+// }
 
 var options = {
     location: 'Johnstown, PA',
@@ -107,7 +104,7 @@ var options = {
               return;
           }
           var chunk = chunkArr[0];
-          newUtt = new fallbackSpeechSynthesisUtterance(chunk);
+          newUtt = new SpeechSynthesisUtterance(chunk);
           var x;
           for (x in utt) {
               if (utt.hasOwnProperty(x) && x !== 'text') {
@@ -143,7 +140,7 @@ var options = {
       // console.log(newUtt); //IMPORTANT!! Do not remove: Logging the object out fixes some onend firing issues.
       //placing the speak invocation inside a callback fixes ordering and onend issues.
       setTimeout(function () {
-          fallbackSpeechSynthesis.speak(newUtt);
+          speechSynthesis.speak(newUtt);
       }, 0);
   };
 
@@ -172,8 +169,8 @@ var options = {
 
           YoutubeVideos.find({}).observe({
               added: function(video){
-                  var url = video.url.replace("watch?v=", "v/");
-                  $("#youtube").attr('src', url);
+                //   var url = video.url.replace("watch?v=", "v/");
+                  $("#youtube").attr('src', video.url);
               }
           });
 
@@ -201,7 +198,7 @@ var options = {
                 } else {
                   // tts.speak(sound.url, sound.lang);
 
-                  var voices = window.fallbackSpeechSynthesis.getVoices();
+                  var voices = window.speechSynthesis.getVoices();
                   var index = 1;
                   if (!isNaN(sound.lang)){
                     // console.log("len -> ", voices.length-1);
@@ -213,37 +210,39 @@ var options = {
 
                   if (voices){
                     $('#talk').text(sound.url);
-                    var msg = new fallbackSpeechSynthesisUtterance();
+                    var msg = new SpeechSynthesisUtterance();
                     msg.voice = voices[index]; // Note: some voices don't support altering params
                     msg.voiceURI = 'native';
                     msg.volume = 1; // 0 to 1
                     msg.rate = sound.rate; // 0.1 to 10
                     msg.pitch = sound.pitch; //0 to 2
                     msg.text = sound.url;
-                    msg.lang = voices[index].lang;
+                    if (voices[index]){
+                        msg.lang = voices[index].lang;
+                    }
 
                     msg.onend = function(e) {
                       console.log('Finished in ' + event.elapsedTime + ' seconds.');
-                      fallbackSpeechSynthesis.cancel()
+                      speechSynthesis.cancel()
                     };
 
                     msg.onerror = function(e){
                       console.log("Error in sound");
-                      fallbackSpeechSynthesis.cancel();
+                      speechSynthesis.cancel();
                     };
 
                     msg.onstart = function(e){
                       console.log("Start Talk");
                     };
 
-                    speechUtteranceChunker(msg, {
-                        chunkLength: 120
-                    }, function () {
-                        //some code to execute when done
-                        console.log('done');
-                        fallbackSpeechSynthesis.cancel();
-                    });
-                    // window.speechSynthesis.speak(DracoTalk);
+                    // speechUtteranceChunker(msg, {
+                    //     chunkLength: 120
+                    // }, function () {
+                    //     //some code to execute when done
+                    //     console.log('done');
+                    //     speechSynthesis.cancel();
+                    // });
+                    window.speechSynthesis.speak(DracoTalk);
                   }
 
 
@@ -254,11 +253,11 @@ var options = {
             },
             remove: function(oldSound){
               console.log("Removed Sound from collection");
-              fallbackSpeechSynthesis.cancel();
+              speechSynthesis.cancel();
             },
             changed: function(){
               console.log("Sound Collection changed");
-              fallbackSpeechSynthesis.cancel();
+              speechSynthesis.cancel();
             }
           });
       });
@@ -293,7 +292,7 @@ var options = {
 
   Template.home.events({
     'click #getVoices': function(){
-      var voices = window.fallbackSpeechSynthesis.getVoices();
+      var voices = window.speechSynthesis.getVoices();
       for (var i=0; i<=voices.length;i++){
         var voice = voices[i];
         if (voice){
