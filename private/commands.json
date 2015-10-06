@@ -34,7 +34,7 @@
             "what":"Gives you number of stars you have"
         },
         "personbot":{
-            "active":true,
+            "active":false,
             "hidden":true,
             "what":"",
             "extra": "username"
