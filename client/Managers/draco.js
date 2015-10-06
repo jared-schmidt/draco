@@ -176,6 +176,9 @@ var options = {
                   var sound = new Howl({
                       urls: ['http://themushroomkingdom.net/sounds/wav/smb/smb_pause.wav']
                   }).play();
+              },
+              remove: function(){
+                $("#dimg").attr('src', '');
               }
           });
 
@@ -234,7 +237,8 @@ var options = {
                     msg.onerror = function(e){
                       console.log("Error in sound");
                       speechSynthesis.cancel();
-                    };
+                    };                DashboardImages.drop();
+
 
                     msg.onstart = function(e){
                       console.log("Start Talk");

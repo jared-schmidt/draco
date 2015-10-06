@@ -2,10 +2,14 @@ deletemsg = {
     start:function(slack){
         try{
             var deleted = delete_message(slack['slack_id']);
-            console.log(deleted);
+            var imgObj = {
+                "addedBy": "",
+                "url": "/images/pony.jpg",
+                "text": "",
+                "addedOn": new Date()
+            }
+            DashboardImages.insert(imgObj);
             if (deleted){
-                var didDrop = DashboardImages.drop();
-                console.log(didDrop);
                 message = "deleted message";
             }else{
                 message = "failed to delete.";
