@@ -167,13 +167,18 @@ var options = {
               }
           });
 
-          YoutubeVideos.find({}).observe({
+          DashboardImages.find({}).observe({
               added: function(video){
                 //   var url = video.url.replace("watch?v=", "v/");
-                  $("#youtube").attr('src', video.url);
+                  $("#dimg").attr('src', video.url);
                   $("#gifWho").text(video.addedBy);
                   $("#gifText").text(video.text);
-
+                  var sound = new Howl({
+                      urls: ['http://themushroomkingdom.net/sounds/wav/smb/smb_pause.wav']
+                  }).play();
+              },
+              remove: function(){
+                $("#dimg").attr('src', '');
               }
           });
 
@@ -232,7 +237,8 @@ var options = {
                     msg.onerror = function(e){
                       console.log("Error in sound");
                       speechSynthesis.cancel();
-                    };
+                    };                DashboardImages.drop();
+
 
                     msg.onstart = function(e){
                       console.log("Start Talk");

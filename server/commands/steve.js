@@ -75,6 +75,14 @@ steve = {
                         message = "I have no clue.";
                         break;
                 }
+                var person = People.findOne({'id': slack['slack_id']});
+                var imgObj = {
+                    "addedBy": person['name'],
+                    "url": image,
+                    "text": slack['text'],
+                    "addedOn": new Date()
+                }
+                DashboardImages.insert(imgObj);
             }
         }else {
                 var offset = Math.floor((Math.random() * images.length-1) + 1);

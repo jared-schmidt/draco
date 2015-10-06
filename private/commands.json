@@ -34,7 +34,7 @@
             "what":"Gives you number of stars you have"
         },
         "personbot":{
-            "active":true,
+            "active":false,
             "hidden":true,
             "what":"",
             "extra": "username"
@@ -229,9 +229,15 @@
           "what": "Reads a random number fact though draco"
       },
       "youtube": {
-          "active": true,
-          "hidden": false,
+          "active": false,
+          "hidden": true,
           "what": "Plays youtube videos"
+      },
+      "dgif": {
+        "active": true,
+        "hidden": false,
+        "what": "Pastes an image link to the dashboard",
+        "createdby": "pkohlway"
       }
     }
 }
