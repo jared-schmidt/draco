@@ -173,7 +173,9 @@ var options = {
                   $("#youtube").attr('src', video.url);
                   $("#gifWho").text(video.addedBy);
                   $("#gifText").text(video.text);
-
+                  var sound = new Howl({
+                      urls: ['http://themushroomkingdom.net/sounds/wav/smb/smb_pause.wav']
+                  }).play();
               }
           });
 
