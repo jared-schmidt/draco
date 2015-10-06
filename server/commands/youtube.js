@@ -28,7 +28,7 @@ youtube = {
         console.log(slack['text']);
         var x = slack['text'].length;
         var imgUrl = "";
-        var sliceText = slack['text'].slice(x - 2, x);
+        var sliceText = slack['text'].slice(x - 3, x);
         console.log(sliceText);
         if(sliceText == "gif"){
           imgUrl = slack['text'];
