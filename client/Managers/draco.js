@@ -171,6 +171,9 @@ var options = {
               added: function(video){
                 //   var url = video.url.replace("watch?v=", "v/");
                   $("#youtube").attr('src', video.url);
+                  $("#gifWho").text(video.addedBy);
+                  $("#gifText").text(video.text);
+
               }
           });
 
