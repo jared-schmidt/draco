@@ -167,10 +167,10 @@ var options = {
               }
           });
 
-          YoutubeVideos.find({}).observe({
+          DashboardImages.find({}).observe({
               added: function(video){
                 //   var url = video.url.replace("watch?v=", "v/");
-                  $("#youtube").attr('src', video.url);
+                  $("#dimg").attr('src', video.url);
                   $("#gifWho").text(video.addedBy);
                   $("#gifText").text(video.text);
                   var sound = new Howl({

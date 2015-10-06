@@ -229,9 +229,15 @@
           "what": "Reads a random number fact though draco"
       },
       "youtube": {
-          "active": true,
-          "hidden": false,
+          "active": false,
+          "hidden": true,
           "what": "Plays youtube videos"
+      },
+      "dgif": {
+        "active": true,
+        "hidden": false,
+        "what": "Pastes an image link to the dashboard",
+        "createdby": "pkohlway"
       }
     }
 }

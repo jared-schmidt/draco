@@ -1,4 +1,4 @@
-youtube = {
+dgif = {
     start:function(slack){
         // var person = People.findOne({'id': slack['slack_id']});
         // console.log("Adding -> " + slack['text']);
@@ -20,24 +20,42 @@ youtube = {
         // return message;
 
 
-        var offset = Math.floor((Math.random() * 10) + 1); //random number between 1 and 10
-        var giphy_token = Meteor.settings['giphy_public_token'];
-        var rating = 'pg-13';
-        var url = "";
-        var j_data = null;
-        console.log(slack['text']);
-        var x = slack['text'].length;
-        var imgUrl = "";
-        var sliceText = slack['text'].slice(x - 3, x);
-        console.log(sliceText);
-        if(sliceText == "gif"){
-          imgUrl = slack['text'];
+        // var offset = Math.floor((Math.random() * 10) + 1); //random number between 1 and 10
+        // var giphy_token = Meteor.settings['giphy_public_token'];
+        // var rating = 'pg-13';
+        // var url = "";
+        // var j_data = null;
+        var lastIndexOfImg = slack['text'].lastIndexOf('.');
+        var sliceText = slack['text'].slice(lastIndexOfImg + 1, slack['text'].length);
+        var imgUrl;
+        switch(sliceText){
+          case "gif":
+            imgUrl = slack['text'];
+            break;
+          case "jpg":
+            imgUrl = slack['text'];
+            break;
+          case "jpeg":
+            imgUrl = slack['text'];
+            break;
+          case "png":
+            imgUrl = slack['text'];
+            break;
+          case "flif":
+            imgUrl = slack['text'];
+            break;
+          case "tiff":
+            imgUrl = slack['text'];
+            break;
+          case "bmp":
+            imgUrl = slack['text'];
+            break;
+          default:
+            imgUrl = null;
+            break;
+
         }
-        else{
-             url = 'http://api.giphy.com/v1/gifs/search?'+q_string({'q':slack['text']})+'&api_key='+giphy_token+'&limit=1&rating='+rating+'&offset='+offset;
-             j_data = get_call(url);
-        }
-        var limit = 10;
+
         try{
             // LIMIT COMMENTED OUT
 
@@ -45,20 +63,16 @@ youtube = {
             // var person = People.findOne({'id':slack['slack_id']});
             var person = People.findOne({'id': slack['slack_id']});
             // if (person.gifs <= limit){
-            var url = "";
-            if(j_data != null){
-                url = j_data['data'][0]['images']['original']['url'];
-            }else{
-              url = imgUrl;
-            }
-            console.log(url);
-                var youtubeObj = {
+            var imgObj = {}
+            if(imgUrl != null){
+                imgObj = {
                     "addedBy": person['name'],
-                    "url": url,
+                    "url": imgUrl,
                     "text": slack['text'],
                     "addedOn": new Date()
                 }
-                YoutubeVideos.insert(youtubeObj);
+            }
+                DashboardImages.insert(imgObj);
                 // outgoing_bot(slack['slack_id'], 'called by: '+ slack['slack_name'] + " Searched: " + slack['text'] +" " + url, slack['channel_id']);
                 // message = "Sent. " + (limit - person.gifs).toString() + " Gifs left.";
                 message = "Sent.";
