@@ -19,7 +19,7 @@ rgif = {
                 var imgObj = {
                     "addedBy": person['name'],
                     "url": url,
-                    "text": slack['text'],
+                    "text": "randomly generated gif",
                     "addedOn": new Date()
                 }
                 DashboardImages.insert(imgObj);
