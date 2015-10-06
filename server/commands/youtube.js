@@ -25,9 +25,12 @@ youtube = {
         var rating = 'pg-13';
         var url = "";
         var j_data = null;
+        console.log(slack['text']);
         var x = slack['text'].length;
         var imgUrl = "";
-        if(slack['text'].slice(x - 2, x) == "gif"){
+        var sliceText = slack['text'].slice(x - 2, x);
+        console.log(sliceText);
+        if(sliceText == "gif"){
           imgUrl = slack['text'];
         }
         else{
@@ -42,12 +45,13 @@ youtube = {
             // var person = People.findOne({'id':slack['slack_id']});
             var person = People.findOne({'id': slack['slack_id']});
             // if (person.gifs <= limit){
-            var url;
-            if(j_data){
+            var url = "";
+            if(j_data != null){
                 url = j_data['data'][0]['images']['original']['url'];
             }else{
               url = imgUrl;
             }
+            console.log(url);
                 var youtubeObj = {
                     "addedBy": person['name'],
                     "url": url,
@@ -62,6 +66,7 @@ youtube = {
                 // message = "Limit reached";
             // }
         } catch(err){
+            console.log(err);
             message = 'failed to find image.';
         }
         return message;
