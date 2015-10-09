@@ -36,36 +36,36 @@ talk = {
                 // message = 'Auto cropped that message for you!';
                 // message = "NO MORE CROP";
             // } else {
-                var tags = '';
-                try {
-                  var nlp = Meteor.npmRequire('nlp_compromise');
-                  var words = Meteor.npmRequire('offensivewords');
-                  var Filter = Meteor.npmRequire('bad-words');
-                  var customFilter = new Filter({ placeHolder: 'beep'});
+                // var tags = '';
+                // try {
+                //   var nlp = Meteor.npmRequire('nlp_compromise');
+                //   var words = Meteor.npmRequire('offensivewords');
+                //   var Filter = Meteor.npmRequire('bad-words');
+                //   var customFilter = new Filter({ placeHolder: 'beep'});
+                //
+                //   var s = nlp.pos(text).sentences[0];
+                //   tags = s.tags();
+                //   console.log(tags);
+                // } catch (e) {
+                //     console.log("NLP error");
+                // }
 
-                  var s = nlp.pos(text).sentences[0];
-                  tags = s.tags();
-                  console.log(tags);
-                } catch (e) {
-                    console.log("NLP error");
-                }
-
-                var matches = words(text);
+                // var matches = words(text);
                 var offensive = false;
-                _.each(matches, function(match){
-                    text = text.replace(match, 'beep');
-                    offensive = true;
-                });
+                // _.each(matches, function(match){
+                //     text = text.replace(match, 'beep');
+                //     offensive = true;
+                // });
 
                 if (offensive){
                     text += ". I saved your butt " + slack.slack_name + " watch it next time!";
                 }
 
 
-                message = 'Sent sound #' + PastSounds.find({}).count() + ' character(s) of text ' + text.length + " Tags: " + tags;
+                message = 'Sent sound #' + PastSounds.find({}).count();
             // }
 
-            Meteor.call('pushSound', slack.slack_name, customFilter.clean(text), lang, true, pitch, rate);
+            Meteor.call('pushSound', slack.slack_name, text, lang, true, pitch, rate);
 
         }
         // } else if (text && stringToLong){

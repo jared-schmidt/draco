@@ -204,60 +204,9 @@ var options = {
                     }
                   }).play();
                 } else {
-                  // tts.speak(sound.url, sound.lang);
-
-                  var voices = window.speechSynthesis.getVoices();
-                  var index = 1;
-                  if (!isNaN(sound.lang)){
-                    // console.log("len -> ", voices.length-1);
-                    if (sound.lang >= 0 && sound.lang < voices.length-1)
-                    index = sound.lang;
-                  }
-
-                  console.log("Sound URL/Text -> ", sound.url);
-
-                  if (voices){
                     $('#talk').text(sound.url);
-                    var msg = new SpeechSynthesisUtterance();
-                    msg.voice = voices[index]; // Note: some voices don't support altering params
-                    msg.voiceURI = 'native';
-                    msg.volume = 1; // 0 to 1
-                    msg.rate = sound.rate; // 0.1 to 10
-                    msg.pitch = sound.pitch; //0 to 2
-                    msg.text = sound.url;
-                    if (voices[index]){
-                        msg.lang = voices[index].lang;
-                    }
-
-                    msg.onend = function(e) {
-                      console.log('Finished in ' + event.elapsedTime + ' seconds.');
-                      speechSynthesis.cancel()
-                    };
-
-                    msg.onerror = function(e){
-                      console.log("Error in sound");
-                      speechSynthesis.cancel();
-                    };                DashboardImages.drop();
-
-
-                    msg.onstart = function(e){
-                      console.log("Start Talk");
-                    };
-
-                    // speechUtteranceChunker(msg, {
-                    //     chunkLength: 120
-                    // }, function () {
-                    //     //some code to execute when done
-                    //     console.log('done');
-                    //     speechSynthesis.cancel();
-                    // });
-                    window.speechSynthesis.speak(DracoTalk);
-                  }
-
-
-
-                }
-                Meteor.call('playedSound', sound._id, Meteor.connection._lastSessionId);
+                    tts.speak(sound.url, sound.lang);
+                 }
               }
             },
             remove: function(oldSound){

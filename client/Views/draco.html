@@ -1,7 +1,6 @@
 <head>
     <title>Draco</title>
     <link rel="icon" sizes="16x16 32x32" href="/fav.ico">
-    <script type="text/javascript" src="bower_components/speech-synthesis/polyfill.min.js"></script>
 </head>
 
 <template name='layout'>
@@ -29,9 +28,8 @@
             {{>simpleWeather}}
         </div>
         <div class="col-md-3">
-            <a id="onlineRadioLink" href="http://radiotuna.com/">internet radio</a>
-            <script type="text/javascript" src="http://radiotuna.com/OnlineRadioPlayer/EmbedRadio?playerParams=%7b%22styleSelection0%22%3a0%2c%22styleSelection1%22%3a0%2c%22styleSelection2%22%3a0%2c%22textColor%22%3a0%2c%22backgroundColor%22%3a15592941%2c%22buttonColor%22%3a16744626%2c%22glowColor%22%3a16744626%2c%22playerSize%22%3a240%2c%22userGuid%22%3a%2252acad9d-7003-44af-aef7-7019b355d9f0%22%2c%22streamId%22%3a60121%2c%22playerTitleText%22%3a%22Draco%22%2c%22playerType%22%3a%22singleStation%22%7d&width=240&height=214&autoplay=true"></script>
-
+            <!-- <a id="onlineRadioLink" href="http://radiotuna.com/OnlineRadioPlayer/Create/singleStationPlayer">shoutcast radio player</a><script type="text/javascript" src="http://radiotuna.com/OnlineRadioPlayer/EmbedRadio?playerParams=%7b%22styleSelection0%22%3a0%2c%22styleSelection1%22%3a0%2c%22styleSelection2%22%3a0%2c%22textColor%22%3a0%2c%22backgroundColor%22%3a15592941%2c%22buttonColor%22%3a16744626%2c%22glowColor%22%3a16744626%2c%22playerSize%22%3a200%2c%22userGuid%22%3a%2252acad9d-7003-44af-aef7-7019b355d9f0%22%2c%22streamId%22%3a106463%2c%22playerTitleText%22%3a%22Online%2520Radio%2520Player%22%2c%22playerType%22%3a%22singleStation%22%7d&width=200&height=178&autoplay=true"></script> -->
+<a id="onlineRadioLink" href="http://radiotuna.com/alternative-rock-radio">alternative rock radio</a><script type="text/javascript" src="http://radiotuna.com/OnlineRadioPlayer/EmbedRadio?playerParams=%7B%22styleSelection0%22%3A80%2C%22styleSelection1%22%3A96%2C%22styleSelection2%22%3A76%2C%22textColor%22%3A0%2C%22backgroundColor%22%3A15592941%2C%22buttonColor%22%3A16744626%2C%22glowColor%22%3A16744626%2C%22playerSize%22%3A240%2C%22playerType%22%3A%22style%22%7D&width=240&height=292"></script>
             <div>
                 Talk: <span id='talk'></span>
             </div>

@@ -1,243 +1,248 @@
 {
-    "commands": {
-        "test":{
-            "active":true,
-            "hidden":true,
-            "what":"Test call for draco"
-        },
-        "table":{
-            "active":true,
-            "hidden":false,
-            "what":"Gif of flipping a table"
-        },
-        "gif":{
-            "active":true,
-            "hidden":false,
-            "what":"Returns gif based on text",
-            "extra": "text"
-        },
-        "sticker":{
-            "active":true,
-            "hidden":false,
-            "what":"Returns sticker based on text",
-            "extra": "text"
-        },
-        "star":{
-            "active":true,
-            "hidden":false,
-            "what":"Gives a goldstar to a person",
-            "extra": "username"
-        },
-        "mystars":{
-            "active":true,
-            "hidden":false,
-            "what":"Gives you number of stars you have"
-        },
-        "personbot":{
-            "active":false,
-            "hidden":true,
-            "what":"",
-            "extra": "username"
-        },
-        "refreshdb":{
-            "active":true,
-            "hidden":true,
-            "what":""
-        },
-        "help":{
-            "active":true,
-            "hidden":false,
-            "what":"Gives this list of commands"
-        },
-        "face":{
-            "active":true,
-            "hidden":false,
-            "what":"Returns a face?",
-            "extra": "text"
-        },
-        "meme":{
-            "active":true,
-            "hidden":false,
-            "what":"Meme with text",
-            "extra": "text"
-        },
-        "robot":{
-            "active":true,
-            "hidden":false,
-            "what":"Returns a robot generatered from your text",
-            "extra": "text"
-        },
-        "rtmstart":{
-            "active":true,
-            "hidden":true,
-            "what":""
-        },
-        "game":{
-            "active":true,
-            "hidden":false,
-            "what":"Question-Like Game thing",
-            "extra": "question|answer {text}"
-        },
-        "steve":{
-            "active":true,
-            "hidden":false,
-            "what":"Returns a random meme picture of Steve",
-            "extra": "text*"
-        },
-        "cookie":{
-            "active":true,
-            "hidden":false,
-            "what":"Returns a fortune cookie message"
-        },
-        "yoda":{
-            "active":true,
-            "hidden":false,
-            "what":"Returns talk like yoda",
-            "extra": "text"
-        },
-        "randomword":{
-            "active":true,
-            "hidden":false,
-            "what":"Returns a random word"
-        },
-        "deletemsg":{
-            "active":true,
-            "hidden":false,
-            "what":"Deletes the last draco message YOU sent"
-        },
-        "define":{
-            "active":true,
-            "hidden":false,
-            "what":"Returns a definition of a word",
-            "extra":"word"
-        },
-        "chuck":{
-          "active":true,
-          "hidden":false,
-          "what":"Returns a random Chuck Norris joke"
-        },
-        "quote":{
-          "active":true,
-          "hidden":false,
-          "what":"Returns a random quote"
-        },
-        "catfact":{
-          "active":true,
-          "hidden":false,
-          "what":"Returns a random catfact"
-        },
-        "pirate":{
-          "active":true,
-          "hidden":false,
-          "what":"Returns talk like a pirate",
-          "extra": "text"
-        },
-        "cowsay":{
-          "active":true,
-          "hidden":false,
-          "what":"Returns talk talking cow",
-          "extra": "text"
-        },
-        "numberfact":{
-          "active":true,
-          "hidden":false,
-          "what":"Returns random fact on a number",
-          "extra": "text"
-        },
-        "holiday":{
-            "active":true,
-            "hidden":false,
-            "what":"Returns the holiday(s) for the day"
-        },
-        "brownbag": {
-            "active":true,
-            "hidden":true,
-            "what": "Connects with the brown-bag website",
-            "extra": "connect {email} | hello | winning | votes | order {text} | orders"
-        },
-        "ron": {
-            "active":true,
-            "hidden": false,
-            "what":"Gets a quote from Ron"
-        },
-        "rgif": {
-            "active":true,
-            "hidden":false,
-            "what":"Gets a random GIF"
-        },
-        "tgif": {
-            "active":true,
-            "hidden":false,
-            "what":"Tanslates words and phrases to GIFs",
-            "extra": "text"
-        },
-        "punch": {
-            "active":true,
-            "hidden":false,
-            "what": "Virtually punch someone",
-            "extra": "username"
-        },
-        "roulette":{
-            "active":true,
-            "hidden":false,
-            "what": "Picks a random person from the office"
-        },
-        "fish":{
-            "active": true,
-            "hidden":false,
-            "what": "Cast out your fishing line and catch some fish!",
-            "extra": "cast | fishes | reel"
-        },
-        "sound":{
-            "active": true,
-            "hidden": false,
-            "what": "Plays a sound on the dracobot website",
-            "extra": "sound"
-        },
-        "talk":{
-            "active": true,
-            "hidden": false,
-            "what": "Text-to-Speech for given language (default is english) [kinda]",
-            "extra": "text|lang|pitch|rate"
-        },
-        "weather":{
-            "active": true,
-            "hidden": false,
-            "what": "Returns the weather for a given zip (or defaults to 15904)",
-            "extra": "zipCode"
-        },
-        "readtweet":{
-            "active": false,
-            "hidden": false,
-            "what": "Reads a tweet for a given hashtag",
-            "extra": "hashtag"
-        },
-        "welcome": {
-            "active": true,
-            "hidden": false,
-            "what": "Welcome a new people to meet draco",
-            "extra": "username"
-        },
-        "xkcd": {
-            "active": true,
-            "hidden": false,
-            "what": "Gets the currect xkcd comic"
-        },
-        "readnumfact": {
-          "active": false,
-          "hidden": false,
-          "what": "Reads a random number fact though draco"
-      },
-      "youtube": {
-          "active": false,
-          "hidden": true,
-          "what": "Plays youtube videos"
-      },
-      "dgif": {
-        "active": true,
-        "hidden": false,
-        "what": "Pastes an image link to the dashboard",
-        "createdby": "pkohlway"
-      }
+  "commands": {
+    "test": {
+      "active": true,
+      "hidden": true,
+      "what": "Test call for draco"
+    },
+    "table": {
+      "active": true,
+      "hidden": false,
+      "what": "Gif of flipping a table"
+    },
+    "gif": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns gif based on text",
+      "extra": "text"
+    },
+    "sticker": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns sticker based on text",
+      "extra": "text"
+    },
+    "star": {
+      "active": true,
+      "hidden": false,
+      "what": "Gives a goldstar to a person",
+      "extra": "username"
+    },
+    "mystars": {
+      "active": true,
+      "hidden": false,
+      "what": "Gives you number of stars you have"
+    },
+    "personbot": {
+      "active": false,
+      "hidden": true,
+      "what": "",
+      "extra": "username"
+    },
+    "refreshdb": {
+      "active": true,
+      "hidden": true,
+      "what": ""
+    },
+    "help": {
+      "active": true,
+      "hidden": false,
+      "what": "Gives this list of commands"
+    },
+    "face": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns a face?",
+      "extra": "text"
+    },
+    "meme": {
+      "active": true,
+      "hidden": false,
+      "what": "Meme with text",
+      "extra": "text"
+    },
+    "robot": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns a robot generatered from your text",
+      "extra": "text"
+    },
+    "rtmstart": {
+      "active": true,
+      "hidden": true,
+      "what": ""
+    },
+    "game": {
+      "active": true,
+      "hidden": false,
+      "what": "Question-Like Game thing",
+      "extra": "question|answer {text}"
+    },
+    "steve": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns a random meme picture of Steve",
+      "extra": "text*"
+    },
+    "cookie": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns a fortune cookie message"
+    },
+    "yoda": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns talk like yoda",
+      "extra": "text"
+    },
+    "randomword": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns a random word"
+    },
+    "deletemsg": {
+      "active": true,
+      "hidden": false,
+      "what": "Deletes the last draco message YOU sent"
+    },
+    "define": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns a definition of a word",
+      "extra": "word"
+    },
+    "chuck": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns a random Chuck Norris joke"
+    },
+    "quote": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns a random quote"
+    },
+    "catfact": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns a random catfact"
+    },
+    "pirate": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns talk like a pirate",
+      "extra": "text"
+    },
+    "cowsay": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns talk talking cow",
+      "extra": "text"
+    },
+    "numberfact": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns random fact on a number",
+      "extra": "text"
+    },
+    "holiday": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns the holiday(s) for the day"
+    },
+    "brownbag": {
+      "active": true,
+      "hidden": true,
+      "what": "Connects with the brown-bag website",
+      "extra": "connect {email} | hello | winning | votes | order {text} | orders"
+    },
+    "ron": {
+      "active": true,
+      "hidden": false,
+      "what": "Gets a quote from Ron"
+    },
+    "rgif": {
+      "active": true,
+      "hidden": false,
+      "what": "Gets a random GIF"
+    },
+    "tgif": {
+      "active": true,
+      "hidden": false,
+      "what": "Tanslates words and phrases to GIFs",
+      "extra": "text"
+    },
+    "punch": {
+      "active": true,
+      "hidden": false,
+      "what": "Virtually punch someone",
+      "extra": "username"
+    },
+    "roulette": {
+      "active": true,
+      "hidden": false,
+      "what": "Picks a random person from the office"
+    },
+    "fish": {
+      "active": true,
+      "hidden": false,
+      "what": "Cast out your fishing line and catch some fish!",
+      "extra": "cast | fishes | reel"
+    },
+    "sound": {
+      "active": true,
+      "hidden": false,
+      "what": "Plays a sound on the dracobot website",
+      "extra": "sound"
+    },
+    "talk": {
+      "active": true,
+      "hidden": false,
+      "what": "Text-to-Speech for given language (default is english) [kinda]",
+      "extra": "text|lang|pitch|rate"
+    },
+    "weather": {
+      "active": true,
+      "hidden": false,
+      "what": "Returns the weather for a given zip (or defaults to 15904)",
+      "extra": "zipCode"
+    },
+    "readtweet": {
+      "active": false,
+      "hidden": false,
+      "what": "Reads a tweet for a given hashtag",
+      "extra": "hashtag"
+    },
+    "welcome": {
+      "active": true,
+      "hidden": false,
+      "what": "Welcome a new people to meet draco",
+      "extra": "username"
+    },
+    "xkcd": {
+      "active": true,
+      "hidden": false,
+      "what": "Gets the currect xkcd comic"
+    },
+    "readnumfact": {
+      "active": false,
+      "hidden": false,
+      "what": "Reads a random number fact though draco"
+    },
+    "youtube": {
+      "active": false,
+      "hidden": true,
+      "what": "Plays youtube videos"
+    },
+    "dgif": {
+      "active": true,
+      "hidden": false,
+      "what": "Pastes an image link to the dashboard",
+      "createdby": "pkohlway"
+    },
+    "know": {
+      "active": true,
+      "hidden": false,
+      "what": "know"
     }
+  }
 }
