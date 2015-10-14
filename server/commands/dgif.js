@@ -1,30 +1,7 @@
 dgif = {
     start:function(slack){
-        // var person = People.findOne({'id': slack['slack_id']});
-        // console.log("Adding -> " + slack['text']);
-        // // TODO: Add check for URL
-        // if(slack['text']){
-        //     console.log("Adding video");
-        //     message =  "Adding video";
-        //     var youtubeObj = {
-        //         "addedBy": person['name'],
-        //         "url": slack['text'],
-        //         "addedOn": new Date()
-        //     }
-        //     YoutubeVideos.insert(youtubeObj);
-        //
-        // }else{
-        //     console.log("did not add video");
-        //     message = "Need a video URL";
-        // }
-        // return message;
 
 
-        // var offset = Math.floor((Math.random() * 10) + 1); //random number between 1 and 10
-        // var giphy_token = Meteor.settings['giphy_public_token'];
-        // var rating = 'pg-13';
-        // var url = "";
-        // var j_data = null;
         var lastIndexOfImg = slack['text'].lastIndexOf('.');
         var sliceText = slack['text'].slice(lastIndexOfImg + 1, slack['text'].length);
         var imgUrl;
@@ -51,7 +28,12 @@ dgif = {
             imgUrl = slack['text'];
             break;
           default:
-            imgUrl = null;
+            var offset = Math.floor((Math.random() * 10) + 1); //random number between 1 and 10
+            var giphy_token = Meteor.settings['giphy_public_token'];
+            var rating = 'pg-13';
+            var url = 'http://api.giphy.com/v1/gifs/search?'+q_string({'q':slack['text']})+'&api_key='+giphy_token+'&limit=1&rating='+rating+'&offset='+offset;
+            var j_data = get_call(url);
+            imgUrl = j_data['data'][0]['images']['original']['url'];
             break;
 
         }

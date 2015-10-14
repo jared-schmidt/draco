@@ -31,6 +31,7 @@ holiday = {
             }
             }
         });
+        msg += '- ' + "Pete's Birthday" + '\n';
 
         return "Found " + hol_lst.length + ' holiday(s) for today: \n' + msg;
     }
