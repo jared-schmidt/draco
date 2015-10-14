@@ -174,7 +174,7 @@ var options = {
                   $("#gifWho").text(video.addedBy);
                   $("#gifText").text(video.text);
                   var sound = new Howl({
-                      urls: ['http://themushroomkingdom.net/sounds/wav/smb/smb_pause.wav']
+                      urls: ['http://themushroomkingdom.net/sounds/wav/smb/smb_fireball.wav']
                   }).play();
               },
               remove: function(){
