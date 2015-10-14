@@ -248,6 +248,9 @@ if (Meteor.isServer) {
     isPlaying: function(){
       var soundsCount = Sounds.find({'playing': true}).count();
       return soundsCount > 0;
+    },
+    removeImg: function(){
+      DashboardImages.remove({});
     }
   });
 
