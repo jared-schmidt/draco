@@ -5,27 +5,35 @@ dgif = {
         var lastIndexOfImg = slack['text'].lastIndexOf('.');
         var sliceText = slack['text'].slice(lastIndexOfImg + 1, slack['text'].length);
         var imgUrl;
+        var returnText;
         switch(sliceText){
           case "gif":
             imgUrl = slack['text'];
+            returnText = "sent from dgif";
             break;
           case "jpg":
             imgUrl = slack['text'];
+            returnText = "sent from dgif";
             break;
           case "jpeg":
             imgUrl = slack['text'];
+            returnText = "sent from dgif";
             break;
           case "png":
             imgUrl = slack['text'];
+            returnText = "sent from dgif";
             break;
           case "flif":
             imgUrl = slack['text'];
+            returnText = "sent from dgif";
             break;
           case "tiff":
             imgUrl = slack['text'];
+            returnText = "sent from dgif";
             break;
           case "bmp":
             imgUrl = slack['text'];
+            returnText = "sent from dgif";
             break;
           default:
             var offset = Math.floor((Math.random() * 10) + 1); //random number between 1 and 10
@@ -34,6 +42,7 @@ dgif = {
             var url = 'http://api.giphy.com/v1/gifs/search?'+q_string({'q':slack['text']})+'&api_key='+giphy_token+'&limit=1&rating='+rating+'&offset='+offset;
             var j_data = get_call(url);
             imgUrl = j_data['data'][0]['images']['original']['url'];
+            returnText = slack['text'];
             break;
 
         }
@@ -45,12 +54,13 @@ dgif = {
             // var person = People.findOne({'id':slack['slack_id']});
             var person = People.findOne({'id': slack['slack_id']});
             // if (person.gifs <= limit){
+
             var imgObj = {}
             if(imgUrl != null){
                 imgObj = {
                     "addedBy": person['name'],
                     "url": imgUrl,
-                    "text": "sent from dgif",
+                    "text": returnText,
                     "addedOn": new Date()
                 }
             }
