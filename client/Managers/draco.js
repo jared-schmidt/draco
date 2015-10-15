@@ -168,14 +168,15 @@ var options = {
           });
 
           DashboardImages.find({}).observe({
-              added: function(video){
+              added: function(img){
                 //   var url = video.url.replace("watch?v=", "v/");
-                  $("#dimg").attr('src', video.url);
-                  $("#gifWho").text(video.addedBy);
-                  $("#gifText").text(video.text);
+                  $("#dimg").attr('src', img.url);
+                  $("#gifWho").text(img.addedBy);
+                  $("#gifText").text(img.text);
                   var sound = new Howl({
-                      urls: ['http://themushroomkingdom.net/sounds/wav/smb/smb_pause.wav']
+                      urls: ['http://themushroomkingdom.net/sounds/wav/smb/smb_fireball.wav']
                   }).play();
+                  Meteor.call('removeImg');
               },
               remove: function(){
                 $("#dimg").attr('src', '');
