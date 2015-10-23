@@ -185,7 +185,9 @@ var options = {
 
           YoutubeVideos.find({}).observe({
             added: function(video){
-              $("#youtube").attr('src', video.url + "?rel=0autoplay=1");
+              var url = video.url + "&output=embed?rel=0autoplay=1";
+              url = url.replace("watch?v=", "v/");
+              $("#youtube").attr('src', url);
               $("#gifWho").text(video.addedBy);
               Meteor.call('removeVideo');
             },
