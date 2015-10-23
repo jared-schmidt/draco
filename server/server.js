@@ -251,6 +251,9 @@ if (Meteor.isServer) {
     },
     removeImg: function(){
       DashboardImages.remove({});
+    },
+    removeVideo: function(){
+      YoutubeVideos.remove({});
     }
   });
 
