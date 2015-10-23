@@ -229,8 +229,8 @@
       "what": "Reads a random number fact though draco"
     },
     "youtube": {
-      "active": false,
-      "hidden": true,
+      "active": true,
+      "hidden": false,
       "what": "Plays youtube videos"
     },
     "dgif": {

@@ -183,6 +183,17 @@ var options = {
               }
           });
 
+          YoutubeVideos.find({}).observe({
+            added: function(video){
+              $("#youtube").attr('src', video.url + "?rel=0autoplay=1");
+              $("#gifWho").text(video.addedBy);
+              Meteor.call('removeVideo');
+            },
+            remove: function(){
+              $("#youtube").attr('src', '');
+            }
+          });
+
           Sounds.find({}).observe({
             added:function(sound){
               console.log("Sound added to collection");
