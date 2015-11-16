@@ -73,76 +73,76 @@ var options = {
   Weather.options = options
 
 
-  var speechUtteranceChunker = function (utt, settings, callback) {
-      settings = settings || {};
-      // console.log("utt ",utt);
-      // console.log("settings ", settings)
-      var newUtt;
-      var txt = (settings && settings.offset !== undefined ? utt.text.substring(settings.offset) : utt.text);
-      if (utt.voice && utt.voice.voiceURI === 'native') { // Not part of the spec
-          newUtt = utt;
-          newUtt.text = txt;
-          newUtt.addEventListener('end', function () {
-              if (speechUtteranceChunker.cancel) {
-                  speechUtteranceChunker.cancel = false;
-              }
-              if (callback !== undefined) {
-                  callback();
-              }
-          });
-      }
-      else {
-          var chunkLength = (settings && settings.chunkLength) || 160;
-          var pattRegex = new RegExp('^[\\s\\S]{' + Math.floor(chunkLength / 2) + ',' + chunkLength + '}[.!?,]{1}|^[\\s\\S]{1,' + chunkLength + '}$|^[\\s\\S]{1,' + chunkLength + '} ');
-          var chunkArr = txt.match(pattRegex);
-
-          if (chunkArr[0] === undefined || chunkArr[0].length <= 2) {
-              //call once all text has been spoken...
-              if (callback !== undefined) {
-                  callback();
-              }
-              return;
-          }
-          var chunk = chunkArr[0];
-          newUtt = new SpeechSynthesisUtterance(chunk);
-          var x;
-          for (x in utt) {
-              if (utt.hasOwnProperty(x) && x !== 'text') {
-                  newUtt[x] = utt[x];
-              }
-          }
-          newUtt.addEventListener('end', function () {
-              if (speechUtteranceChunker.cancel) {
-                  speechUtteranceChunker.cancel = false;
-                  return;
-              }
-              settings.offset = settings.offset || 0;
-              settings.offset += chunk.length - 1;
-              speechUtteranceChunker(utt, settings, callback);
-          });
-      }
-
-      if (settings.modifier) {
-          settings.modifier(newUtt);
-      }
-
-      newUtt.voice = utt.voice;
-      newUtt.voiceURI = utt.voiceURI;
-      newUtt.lang = utt.lang;
-      newUtt.volume = utt.volume;
-      newUtt.rate = utt.rate;
-      newUtt.pitch = utt.pitch;
-      newUtt.onend = utt.onend;
-
-      newUtt.onerror = utt.onerror;
-      newUtt.onstart = utt.onstart;
-
-      // console.log(newUtt); //IMPORTANT!! Do not remove: Logging the object out fixes some onend firing issues.
-      //placing the speak invocation inside a callback fixes ordering and onend issues.
-      setTimeout(function () {
-          speechSynthesis.speak(newUtt);
-      }, 0);
-  };
+  // var speechUtteranceChunker = function (utt, settings, callback) {
+  //     settings = settings || {};
+  //     // console.log("utt ",utt);
+  //     // console.log("settings ", settings)
+  //     var newUtt;
+  //     var txt = (settings && settings.offset !== undefined ? utt.text.substring(settings.offset) : utt.text);
+  //     if (utt.voice && utt.voice.voiceURI === 'native') { // Not part of the spec
+  //         newUtt = utt;
+  //         newUtt.text = txt;
+  //         newUtt.addEventListener('end', function () {
+  //             if (speechUtteranceChunker.cancel) {
+  //                 speechUtteranceChunker.cancel = false;
+  //             }
+  //             if (callback !== undefined) {
+  //                 callback();
+  //             }
+  //         });
+  //     }
+  //     else {
+  //         var chunkLength = (settings && settings.chunkLength) || 160;
+  //         var pattRegex = new RegExp('^[\\s\\S]{' + Math.floor(chunkLength / 2) + ',' + chunkLength + '}[.!?,]{1}|^[\\s\\S]{1,' + chunkLength + '}$|^[\\s\\S]{1,' + chunkLength + '} ');
+  //         var chunkArr = txt.match(pattRegex);
+  //
+  //         if (chunkArr[0] === undefined || chunkArr[0].length <= 2) {
+  //             //call once all text has been spoken...
+  //             if (callback !== undefined) {
+  //                 callback();
+  //             }
+  //             return;
+  //         }
+  //         var chunk = chunkArr[0];
+  //         newUtt = new SpeechSynthesisUtterance(chunk);
+  //         var x;
+  //         for (x in utt) {
+  //             if (utt.hasOwnProperty(x) && x !== 'text') {
+  //                 newUtt[x] = utt[x];
+  //             }
+  //         }
+  //         newUtt.addEventListener('end', function () {
+  //             if (speechUtteranceChunker.cancel) {
+  //                 speechUtteranceChunker.cancel = false;
+  //                 return;
+  //             }
+  //             settings.offset = settings.offset || 0;
+  //             settings.offset += chunk.length - 1;
+  //             speechUtteranceChunker(utt, settings, callback);
+  //         });
+  //     }
+  //
+  //     if (settings.modifier) {
+  //         settings.modifier(newUtt);
+  //     }
+  //
+  //     newUtt.voice = utt.voice;
+  //     newUtt.voiceURI = utt.voiceURI;
+  //     newUtt.lang = utt.lang;
+  //     newUtt.volume = utt.volume;
+  //     newUtt.rate = utt.rate;
+  //     newUtt.pitch = utt.pitch;
+  //     newUtt.onend = utt.onend;
+  //
+  //     newUtt.onerror = utt.onerror;
+  //     newUtt.onstart = utt.onstart;
+  //
+  //     // console.log(newUtt); //IMPORTANT!! Do not remove: Logging the object out fixes some onend firing issues.
+  //     //placing the speak invocation inside a callback fixes ordering and onend issues.
+  //     setTimeout(function () {
+  //         speechSynthesis.speak(newUtt);
+  //     }, 0);
+  // };
 
   // client code: ping heartbeat every 5 seconds
   Meteor.setInterval(function () {
@@ -150,77 +150,77 @@ var options = {
   }, 5000);
 
 
-  Deps.autorun(function() {
-      Meteor.subscribe('messages');
-      Notification.requestPermission();
+  // Deps.autorun(function() {
+    //   Meteor.subscribe('messages');
+    //   Notification.requestPermission();
       // Meteor.subscribe('desktopNotifications');
-      Meteor.autosubscribe(function() {
+    //   Meteor.autosubscribe(function() {
 
-          DesktopNotifications.find({}).observe({
-              added: function(notification) {
-                  new Notification(notification.title, {
-                      dir: 'auto',
-                      lang: 'en-US',
-                      body: notification.body,
-                      icon: notification.icon
-                  });
-              }
-          });
+        //   DesktopNotifications.find({}).observe({
+        //       added: function(notification) {
+        //           new Notification(notification.title, {
+        //               dir: 'auto',
+        //               lang: 'en-US',
+        //               body: notification.body,
+        //               icon: notification.icon
+        //           });
+        //       }
+        //   });
 
-          DashboardImages.find({}).observe({
-              added: function(img){
-                //   var url = video.url.replace("watch?v=", "v/");
-                  $("#dimg").attr('src', img.url);
-                  $("#gifWho").text(img.addedBy);
-                  $("#gifText").text(img.text);
-                  var sound = new Howl({
-                      urls: ['http://themushroomkingdom.net/sounds/wav/smb/smb_fireball.wav']
-                  }).play();
-                  Meteor.call('removeImg');
-              },
-              remove: function(){
-                $("#dimg").attr('src', '');
-              }
-          });
+        //   DashboardImages.find({}).observe({
+        //       added: function(img){
+        //         //   var url = video.url.replace("watch?v=", "v/");
+        //           $("#dimg").attr('src', img.url);
+        //           $("#gifWho").text(img.addedBy);
+        //           $("#gifText").text(img.text);
+        //           var sound = new Howl({
+        //               urls: ['http://themushroomkingdom.net/sounds/wav/smb/smb_fireball.wav']
+        //           }).play();
+        //           Meteor.call('removeImg');
+        //       },
+        //       remove: function(){
+        //         $("#dimg").attr('src', '');
+        //       }
+        //   });
 
-          Sounds.find({}).observe({
-            added:function(sound){
-              console.log("Sound added to collection");
-              if(!sound.played){
-                if (!sound.speech){
-                  var soundHowl = new Howl({
-                    urls:[sound.url],
-                    onload: function(){
-                        $('#sound').text(sound.url);
-                      console.log("Sound Loaded");
-                      Raptorize();
-                    },
-                    onloaderror: function(err){
-                      console.log("Load error");
-                      console.log(err);
-                    },
-
-                    onend: function(){
-                      console.log("sound over");
-                    }
-                  }).play();
-                } else {
-                    $('#talk').text(sound.url);
-                    tts.speak(sound.url, sound.lang);
-                 }
-              }
-            },
-            remove: function(oldSound){
-              console.log("Removed Sound from collection");
-              speechSynthesis.cancel();
-            },
-            changed: function(){
-              console.log("Sound Collection changed");
-              speechSynthesis.cancel();
-            }
-          });
-      });
-  });
+        //   Sounds.find({}).observe({
+        //     added:function(sound){
+        //       console.log("Sound added to collection");
+        //       if(!sound.played){
+        //         if (!sound.speech){
+        //           var soundHowl = new Howl({
+        //             urls:[sound.url],
+        //             onload: function(){
+        //                 $('#sound').text(sound.url);
+        //               console.log("Sound Loaded");
+        //               Raptorize();
+        //             },
+        //             onloaderror: function(err){
+        //               console.log("Load error");
+        //               console.log(err);
+        //             },
+          //
+        //             onend: function(){
+        //               console.log("sound over");
+        //             }
+        //           }).play();
+        //         } else {
+        //             $('#talk').text(sound.url);
+        //             tts.speak(sound.url, sound.lang);
+        //          }
+        //       }
+        //     },
+        //     remove: function(oldSound){
+        //       console.log("Removed Sound from collection");
+        //       speechSynthesis.cancel();
+        //     },
+        //     changed: function(){
+        //       console.log("Sound Collection changed");
+        //       speechSynthesis.cancel();
+        //     }
+        //   });
+    //   });
+  // });
 
 
   // counter starts at 0

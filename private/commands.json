@@ -189,13 +189,13 @@
       "extra": "cast | fishes | reel"
     },
     "sound": {
-      "active": true,
+      "active": false,
       "hidden": false,
       "what": "Plays a sound on the dracobot website",
       "extra": "sound"
     },
     "talk": {
-      "active": true,
+      "active": false,
       "hidden": false,
       "what": "Text-to-Speech for given language (default is english) [kinda]",
       "extra": "text|lang|pitch|rate"
