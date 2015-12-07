@@ -243,6 +243,11 @@
       "active": true,
       "hidden": false,
       "what": "know"
+  },
+    "homer": {
+        "active": true,
+        "hidden": false,
+        "what": "homer"
     }
   }
 }

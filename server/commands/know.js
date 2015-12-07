@@ -4,17 +4,19 @@ know = {
 
             // var person = People.findOne({'id': slack['slack_id']});
 
-            imgObj = {
-                "addedBy": "YOU",
-                "url": "http://i.giphy.com/R6bDgXEXCLcIw.gif",
-                "text": "",
-                "addedOn": new Date()
-            }
+            var url = 'http://i.giphy.com/R6bDgXEXCLcIw.gif';
 
-            DashboardImages.insert(imgObj);
+            // imgObj = {
+            //     "addedBy": "YOU",
+            //     "url": url,
+            //     "text": "",
+            //     "addedOn": new Date()
+            // }
+            //
+            // DashboardImages.insert(imgObj);
 
-            Meteor.call('pushSound', "KNOW", 'http://dracobot.meteor.com/sounds/knowMore.mp3', 'en', false);
-            // outgoing_bot(slack['slack_id'], 'called by: '+ slack['slack_name'] + " Searched: " + slack['text'] +" " + url, slack['channel_id']);
+            // Meteor.call('pushSound', "KNOW", 'http://dracobot.meteor.com/sounds/knowMore.mp3', 'en', false);
+            outgoing_bot(slack['slack_id'], url, slack['channel_id']);
             message = "Sent.";
 
         } catch(err){

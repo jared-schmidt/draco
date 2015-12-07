@@ -44,33 +44,33 @@ if (Meteor.isClient) {
   // }
 
 // Template.home.rendered = function(){
-  var DracoTalk = null;
-  if ('speechSynthesis' in window) {
-   // Synthesis support. Make your web apps talk!
-   console.log("Synthesis support.");
-   DracoTalk = new SpeechSynthesisUtterance();
-  } else {
-    console.error("No Synthesis support.");
-  }
+  // var DracoTalk = null;
+  // if ('speechSynthesis' in window) {
+  //  // Synthesis support. Make your web apps talk!
+  //  console.log("Synthesis support.");
+  //  DracoTalk = new SpeechSynthesisUtterance();
+  // } else {
+  //   console.error("No Synthesis support.");
+  // }
 // }
 
-var options = {
-    location: 'Johnstown, PA',
-    unit: 'f',
-    success: function(weather) {
-      html = '<h2><i class="sw icon-'+weather.code+'"></i> '
-      html += weather.temp+'&deg;'+weather.units.temp+'</h2>';
-      html += '<ul><li>'+weather.city+', '+weather.region +'</li>';
-      html += '<li class="currently">'+weather.currently+'</li>';
-
-      $("#weather").html(html);
-    },
-    error: function(error) {
-      $("#weather").html('<p>'+error+'</p>');
-    }
-  }
-
-  Weather.options = options
+// var options = {
+//     location: 'Johnstown, PA',
+//     unit: 'f',
+//     success: function(weather) {
+//       html = '<h2><i class="sw icon-'+weather.code+'"></i> '
+//       html += weather.temp+'&deg;'+weather.units.temp+'</h2>';
+//       html += '<ul><li>'+weather.city+', '+weather.region +'</li>';
+//       html += '<li class="currently">'+weather.currently+'</li>';
+//
+//       $("#weather").html(html);
+//     },
+//     error: function(error) {
+//       $("#weather").html('<p>'+error+'</p>');
+//     }
+//   }
+//
+//   Weather.options = options
 
 
   // var speechUtteranceChunker = function (utt, settings, callback) {
@@ -145,9 +145,9 @@ var options = {
   // };
 
   // client code: ping heartbeat every 5 seconds
-  Meteor.setInterval(function () {
-    Meteor.call('keepalive', Meteor.connection._lastSessionId);
-  }, 5000);
+  // Meteor.setInterval(function () {
+  //   Meteor.call('keepalive', Meteor.connection._lastSessionId);
+  // }, 5000);
 
 
   // Deps.autorun(function() {
