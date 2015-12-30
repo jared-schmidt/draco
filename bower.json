@@ -1,8 +1,0 @@
-{
-  "name": "my-app",
-  "version": "0.0.1",
-  "dependencies": {
-    "polyfill-speechsynthesis": "latest"
-},
-"private": true
-}
