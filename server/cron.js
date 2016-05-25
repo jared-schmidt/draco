@@ -166,16 +166,16 @@ if (Meteor.isServer) {
   // });
 
 
-  SyncedCron.add({
-    name: 'Brown-Bag Time',
-    schedule: function(parser) {
-      return parser.text('at 1:28pm on Thurs');
-    },
-    job: function() {
-      bot_talk('@group: Vote http://brown-bag.meteor.com/', 'G045PRA4A');
-    //   Meteor.call('pushSound', 'draco', 'Time to vote on the brown-bag site.', 'en', true, 0, 1);
-    }
-  });
+  // SyncedCron.add({
+  //   name: 'Brown-Bag Time',
+  //   schedule: function(parser) {
+  //     return parser.text('at 1:28pm on Thurs');
+  //   },
+  //   job: function() {
+  //     bot_talk('@group: Vote http://brown-bag.meteor.com/', 'G045PRA4A');
+  //   //   Meteor.call('pushSound', 'draco', 'Time to vote on the brown-bag site.', 'en', true, 0, 1);
+  //   }
+  // });
 
 
   SyncedCron.add({

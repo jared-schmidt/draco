@@ -10,8 +10,8 @@ http
 random
 iron:router
 
-meteorhacks:kadira
-meteorhacks:kadira-profiler
+#meteorhacks:kadira
+#meteorhacks:kadira-profiler
 
 #particle4dev:meteor-cron2
 percolate:synced-cron
@@ -47,7 +47,7 @@ reload
 ejson
 spacebars
 check
-chrisbutler:meteor-cast
+#chrisbutler:meteor-cast
 jschmidt:raptorize
 mquandalle:bower
 
