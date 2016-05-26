@@ -6,8 +6,8 @@ outgoing_bot = function (user_id, message, channel){
         "token":slack_api_token,
         "channel":channel,
         "text": message,
-        "icon_emoji": ':ghost:',
-        "username": "Draco (Ghost)",
+        "icon_emoji": ':panda_face:',
+        "username": "Draco (Ghost Zombie)",
         'parse':"full"
     }
     var result = HTTP.call("GET", url, {params: payload});
