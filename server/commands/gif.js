@@ -4,6 +4,7 @@ gif = {
         var giphy_token = Meteor.settings['giphy_public_token'];
         var rating = 'pg-13';
         var url = 'http://api.giphy.com/v1/gifs/search?'+q_string({'q':slack['text']})+'&api_key='+giphy_token+'&limit=1&rating='+rating+'&offset='+offset;
+        console.log(url);
         var j_data = get_call(url);
         var limit = 10;
         try{
