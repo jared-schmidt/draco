@@ -13,7 +13,7 @@ gif = {
             // People.update({'id': slack['slack_id']}, {$inc:{"gifs": 1}});
             // var person = People.findOne({'id':slack['slack_id']});
             // if (person.gifs <= limit){
-                var url = j_data['data'][0]['images']['original']['url'];
+                var url = j_data['data'][0]['images']['fixed_height']['url'];
                 outgoing_bot(slack['slack_id'], 'called by: '+ slack['slack_name'] + " Searched: " + slack['text'] +" " + url, slack['channel_id']);
                 // message = "Sent. " + (limit - person.gifs).toString() + " Gifs left.";
                 var person = People.findOne({'id': slack['slack_id']});
